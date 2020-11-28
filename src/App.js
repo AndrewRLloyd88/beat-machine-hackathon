@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import logo from './mintbean.png';
 import './styles/index.css';
 import {Howl, Howler} from 'howler';
-import 
 
-class App extends Component {
+const App = () => {
 
-  playSound(){
+  const playSound = () => {
     console.log("clicked")
     var sound = new Howl({
       src: ['../public/effects/airplane-landing_daniel_simion.mp3'],
@@ -18,11 +17,11 @@ class App extends Component {
   }
   
   // This sound file may not work due to cross-origin setting
-  render () {
+
     return(
-      <button className="soundbtn" onClick={this.playSound.bind(this)}>press</button>
+      <h1>Hello World, Let's try a pull request!</h1>
+      // <button className="soundbtn" onClick={this.playSound.bind(this)}>press</button>
     )
   }
-}
 
 export default App;
