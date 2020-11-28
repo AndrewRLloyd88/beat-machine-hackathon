@@ -19,7 +19,7 @@ const App = () => {
   // This sound file may not work due to cross-origin setting
 
     return(
-      <h1>Hello World!</h1>
+      <h1>Hello World, Let's try a pull request!</h1>
       // <button className="soundbtn" onClick={this.playSound.bind(this)}>press</button>
     )
   }
