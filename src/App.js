@@ -25,7 +25,7 @@ const App = () => {
   const playSound = () => {
     console.log("clicked")
     var sound = new Howl({
-      src: './assets/airplane-landing_daniel_simion.mp3',
+      src: ["airplane-landing_daniel_simion.mp3"],
       html5: true,
     });
     
