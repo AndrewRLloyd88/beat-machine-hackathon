@@ -1,26 +1,46 @@
-import React, { Component } from 'react';
-import logo from './mintbean.png';
+import React, { useEffect } from 'react';
 import './styles/index.css';
 import {Howl, Howler} from 'howler';
+// import airplane from './assets/airplane-landing_daniel_simion.mp3';
+
+
+
+// let path = './assets/airplane-landing_daniel_simion.mp3';
+
+// audioPlayer = (
+  //             <div className="count-number-equivelance-audioPlayer">
+  //                 <button id="equivalence-audio-button" onClick={() => audio.play()}>Soundclip!</button>
+  //             </div>
+  //         ); 
+  
+// let audio = new Audio(airplane);
 
 const App = () => {
+  
+  // useEffect(() => {
+  //   audio.load();
+  // }, []);
+
 
   const playSound = () => {
     console.log("clicked")
     var sound = new Howl({
-      src: ['../public/effects/airplane-landing_daniel_simion.mp3'],
+      src: './assets/airplane-landing_daniel_simion.mp3',
       html5: true,
     });
     
     sound.play();
-    Howler.volume(0.5);
+    console.log(sound);
+    Howler.volume(1);
   }
   
   // This sound file may not work due to cross-origin setting
 
     return(
-      <h1>Hello World, Let's try a pull request!</h1>
-      // <button className="soundbtn" onClick={this.playSound.bind(this)}>press</button>
+      <>
+        <h1>Hello World, Let's try a pull request!</h1>
+        <button onClick={playSound}>press</button>
+      </>
     )
   }
 
