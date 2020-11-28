@@ -1,0 +1,25 @@
+hihat = [I, I, I, I, A, I, I, I, I, I, I, I, I, I, I, I]
+
+count = 0;
+
+BPM = 120
+Beats 16
+BPS = 2;
+
+16/120 - result
+
+setInterval() => {
+  if(count === 16){
+    resetCount()
+  }
+
+  if(count 0){
+
+  }
+  else{
+  count = count + 1
+  }
+
+checkArray[count]
+}
+result
