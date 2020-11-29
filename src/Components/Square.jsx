@@ -2,13 +2,11 @@ import React, { useEffect } from 'react';
 import '../styles/index.css';
 import {Howl, Howler} from 'howler';
 
-const Squaure = () => {
+const Square = () => {
 
     return(
-      <>
-        <h1>Squaure</h1>
-      </>
-    )
+      <td>Square</td>      
+    );
   }
 
-export default Squaure;
+export default Square;
