@@ -3,9 +3,11 @@ import './styles/index.css';
 import {Howl, Howler} from 'howler';
 import BeatMachine from "./Components/BeatMachine"
 import InstrumentRow from './Components/InstrumentRow';
+import Bpm from "./helpers/useBPM"
+import BeatTracker from "./Components/BeatTracker"
 
 const App = () => {
-
+const beats = Bpm();
   const playSound = () => {
     var sound = new Howl({
       src: ["./DrumSamples/MainSnare/Snare1.wav"],
@@ -19,10 +21,13 @@ const App = () => {
       <>
       <BeatMachine />
         <h1>Hello World, Let's try a pull request!</h1>
+        <h2>{beats} per minute</h2>
         <button onClick={playSound}>press</button>
 
         <table border='2'>
+      
           <tbody>
+          <BeatTracker/>
            <InstrumentRow />
            <InstrumentRow />
            <InstrumentRow />
