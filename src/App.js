@@ -7,6 +7,9 @@ import InstrumentRow from './Components/InstrumentRow';
 import Bpm from "./helpers/useBPM"
 import BeatTracker from "./Components/BeatTracker"
 import sounds from "./song.json"
+import BeatLabel from "./Components/BeatLabel"
+import Tempo from "./Components/Tempo"
+import instruments from "./helpers/instruments"
 
 const App = () => {
 const beats = Bpm();
@@ -30,6 +33,7 @@ const beats = Bpm();
     playSound()
     playSound1()
   }
+  const instrumentRows = instruments.map((i) => <InstrumentRow instrumentName={i.name} instrumentSound={i.sound} />);
     return(
       <>
       <BeatMachine />
@@ -38,21 +42,17 @@ const beats = Bpm();
         <button onClick={playTogether}>press</button>
         <button onClick={playSound}>press</button>
         <button onClick={playSound1}>press</button>
-
-        <table border='2'>
-      
-          <tbody>
-          <BeatTracker/>
-           <InstrumentRow />
-           <InstrumentRow />
-           <InstrumentRow />
-           <InstrumentRow />
-           <InstrumentRow />
-           <InstrumentRow />
-         </tbody>
-        </table>
-      </>
-    )
-  }
+      {/* <BeatMachine /> */}
+      <Tempo />
+      <table border='0'>
+        <tbody>
+          <BeatTracker />
+          {instrumentRows}
+          <BeatLabel />
+        </tbody>
+      </table>
+    </>
+  )
+}
 
 export default App;

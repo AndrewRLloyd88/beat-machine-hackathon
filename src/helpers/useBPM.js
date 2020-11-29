@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-
-export default function useBPM(defaultBPM) {
-  const [bpm, setBpm] = useState(120);
-
-  return bpm;
+// returns the length of time in milliseconds for a sixteenth note (i.e. the smallest division in the beat machine - one square of time)
+export default function useBPM(bpm) {
+  return bpm / 60 / 4 * 1000;
 }
