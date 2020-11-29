@@ -9,7 +9,7 @@ const Square = (props) => {
   const playSound = () => {
     setToggle(!toggle);
     var sound = new Howl({
-      src: props.sound,
+      src: [props.sound],
       html5: true,
     });
     sound.play();
