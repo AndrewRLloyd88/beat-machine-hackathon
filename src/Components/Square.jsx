@@ -1,12 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import '../styles/index.css';
-import {Howl, Howler} from 'howler';
 
-const Square = () => {
+const Square = () => { 
+
+
+  const [toggle, setToggle] = useState(false);
 
     return(
-      <td>Square</td>      
-    );
+      
+        <td
+          style={toggle ? {background: 'red', padding: '25px'} : {background: 'blue', padding: '25px'}}
+          onClick={() => setToggle(!toggle)}
+        />
+              
+    )
   }
 
 export default Square;

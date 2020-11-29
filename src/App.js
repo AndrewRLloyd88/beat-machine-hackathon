@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './styles/index.css';
 import {Howl, Howler} from 'howler';
 import BeatMachine from "./Components/BeatMachine"
+import InstrumentRow from './Components/InstrumentRow';
 
 const App = () => {
 
@@ -14,13 +15,22 @@ const App = () => {
     Howler.volume(1);
   }
   
-  // This sound file may not work due to cross-origin setting
-
     return(
       <>
       <BeatMachine />
         <h1>Hello World, Let's try a pull request!</h1>
         <button onClick={playSound}>press</button>
+
+        <table border='2'>
+          <tbody>
+           <InstrumentRow />
+           <InstrumentRow />
+           <InstrumentRow />
+           <InstrumentRow />
+           <InstrumentRow />
+           <InstrumentRow />
+         </tbody>
+        </table>
       </>
     )
   }
