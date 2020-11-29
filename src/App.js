@@ -1,43 +1,29 @@
 import React from 'react';
 import './styles/index.css';
-import {Howl, Howler} from 'howler';
 import BeatMachine from "./Components/BeatMachine"
 import InstrumentRow from './Components/InstrumentRow';
 import Bpm from "./helpers/useBPM"
 import BeatTracker from "./Components/BeatTracker"
+import BeatLabel from "./Components/BeatLabel"
+import Tempo from "./Components/Tempo"
+import instruments from "./helpers/instruments"
 
 const App = () => {
-const beats = Bpm();
-  const playSound = () => {
-    var sound = new Howl({
-      src: ["./DrumSamples/MainSnare/Snare1.wav"],
-      html5: true,
-    });    
-    sound.play();
-    Howler.volume(1);
-  }
-  
-    return(
-      <>
-      <BeatMachine />
-        <h1>Hello World, Let's try a pull request!</h1>
-        <h2>{beats} per minute</h2>
-        <button onClick={playSound}>press</button>
 
-        <table border='2'>
-      
-          <tbody>
-          <BeatTracker/>
-           <InstrumentRow />
-           <InstrumentRow />
-           <InstrumentRow />
-           <InstrumentRow />
-           <InstrumentRow />
-           <InstrumentRow />
-         </tbody>
-        </table>
-      </>
-    )
-  }
+  const instrumentRows = instruments.map((i) => <InstrumentRow instrumentName={i.name} instrumentSound={i.sound} />);
+  return (
+    <>
+      <BeatMachine />
+      <Tempo />
+      <table border='0'>
+        <tbody>
+          <BeatTracker />
+          {instrumentRows}
+          <BeatLabel />
+        </tbody>
+      </table>
+    </>
+  )
+}
 
 export default App;

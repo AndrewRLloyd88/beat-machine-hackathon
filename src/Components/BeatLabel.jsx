@@ -1,14 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../styles/index.css';
-import {Howl, Howler} from 'howler';
+
+const numbers = [];
+  for (let i = 1; i <= 16; i++) {
+    numbers.push(<td>{i}</td>);
+  }
 
 const BeatLabel = () => {
 
-    return(
-      <>
-        <h1>BeatLabel</h1>
-      </>
-    )
-  }
+  return (
+    <tr>
+      <td></td>  
+      {numbers}
+    </tr>
+  )
+}
 
 export default BeatLabel;

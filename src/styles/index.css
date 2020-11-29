@@ -5,3 +5,18 @@
   margin: 6rem 0;
   padding: auto;
 }
+body {
+  background-color: white;
+  font-family: impact;
+  font-size: 20px;
+}
+
+input {
+  margin-left: 10px;
+  font-size: 20px;
+  font-family: impact;
+}
+
+table {
+  text-align: center;
+}
