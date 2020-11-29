@@ -10,7 +10,12 @@ const BeatTracker = () => {
 
  const playHeadArray = squares.map((square) => ( <td key={square} className={square > 0 ? "playhead" : "inactive"}></td> ))
 
-return playHeadArray;
+return (
+  <>
+  <td />
+  {playHeadArray}
+  </>
+)
 }
 
 
