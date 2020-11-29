@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import '../styles/index.css';
 
-const Tempo = () => {
-
-  const [tempo, setTempo] = useState(60);
+const Tempo = (props) => {
+console.log("in tempo: ", props)
 
   return (
     <div>
@@ -13,8 +12,8 @@ const Tempo = () => {
         type='number'
         min='40'
         max='240'
-        value={tempo}
-        onChange={(event) => setTempo(event.value)}
+        value={props.value}
+        onChange={props.onTempoChange}
       />
     </div>
 

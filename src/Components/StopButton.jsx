@@ -6,7 +6,7 @@ const StopButton = () => {
 
     return(
       <>
-        <h1>StopButton</h1>
+           <button>Stop</button>
       </>
     )
   }
