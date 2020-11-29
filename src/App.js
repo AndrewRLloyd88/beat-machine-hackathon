@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './styles/index.css';
 import {Howl, Howler} from 'howler';
+import SimpleCard from './components/Columns'
 // import airplane from './assets/airplane-landing_daniel_simion.mp3';
 
 
@@ -40,6 +41,7 @@ const App = () => {
       <>
         <h1>Hello World, Let's try a pull request!</h1>
         <button onClick={playSound}>press</button>
+        <SimpleCard/>
       </>
     )
   }
