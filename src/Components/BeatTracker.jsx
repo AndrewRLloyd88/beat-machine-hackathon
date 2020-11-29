@@ -6,7 +6,7 @@ import '../styles/playhead.css';
 
 const BeatTracker = () => {
   const beats = BPM();
-  const squares = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0];
+  const squares = [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0];
 
  const playHeadArray = squares.map((square) => ( <td key={square} className={square > 0 ? "playhead" : "inactive"}></td> ))
 
