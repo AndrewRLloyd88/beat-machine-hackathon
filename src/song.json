@@ -1,0 +1,10 @@
+[
+    {
+        "id":1,
+        "source":"./DrumSamples/Claps/Clap0.wav"
+    },
+    {
+        "id":2,
+        "source":"./DrumSamples/MainSnare/Snare1.wav"
+    }
+]
