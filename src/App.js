@@ -5,16 +5,13 @@ import BeatMachine from "./Components/BeatMachine"
 import InstrumentRow from './Components/InstrumentRow';
 
 const App = () => {
-  
+
   const playSound = () => {
-    console.log("clicked")
     var sound = new Howl({
-      src: ["airplane-landing_daniel_simion.mp3"],
+      src: ["./DrumSamples/MainSnare/Snare1.wav"],
       html5: true,
-    });
-    
+    });    
     sound.play();
-    console.log(sound);
     Howler.volume(1);
   }
   
