@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import '../styles/index.css';
 import {Howl, Howler} from 'howler';
 
-const PlayButton = () => {
+const PlayButton = (props) => {
 
     return(
       <>
-        <h1>PlayButton</h1>
+        <button onClick={props.onClick}>Play</button>
       </>
     )
   }

@@ -37,3 +37,55 @@ if(isChecked && isActive){
 } else {
   return
 }
+
+//logic for checking instrument patterns active/inactive
+
+const instruments = [
+  { name: 'clap', sound: "./DrumSamples/Claps/Clap1.wav", pattern: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { name: 'hi hat (open)', sound: "./DrumSamples/OpenHats/OH2.wav", pattern: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { name: 'hi hat (closed)', sound: "./DrumSamples/ClosedHats/Hats1.wav", pattern: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { name: 'snare 2', sound: "./DrumSamples/AltSnare1/AltSD25.wav", pattern: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { name: 'snare 1', sound: "./DrumSamples/MainSnare/Snare1.wav", pattern: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { name: 'kick', sound: "./DrumSamples/Kicks/Kick-A-Long1.wav", pattern: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }
+];
+
+// for(pattern of instruments){
+//   console.log(pattern.pattern)
+// }
+
+const [pattern0, pattern1, pattern2, pattern3, pattern4] = instruments
+
+console.log(pattern0.pattern)
+
+if(instruments[0].pattern[0] === 0){
+  console.log("the sound is inactive")
+}
+
+if(instruments[0].pattern[1] === 0){
+  console.log("the sound is inactive")
+}
+
+
+firstRow = [1,1,1]
+look instrumentgrid[1][0],instrumentgrid[1][0]....
+array=[]
+if the element is 1, array.push(element)
+array=[instrumentgrid[1][0],instrumentgrid[1][0] ]
+have a fucntion to play the element toegther,
+
+then move to 
+instrumentgrid[1][1],instrumentgrid[1][1]
+
+for (i = 0; i<instrumentgrid.lenght; i++){
+  for(j =0; j<6; j++){
+    array = []
+    if (instrumentgrid[i][j] == 1){
+      array.push(instrumentgrid[0][0])
+      // array(instrumentgrid[0][0])
+    }
+  }
+      we will have the array output
+    have a function here to pay the sounds togther 
+}
+
+[soundclip0, soundclip2, soundclip4 ].play()
