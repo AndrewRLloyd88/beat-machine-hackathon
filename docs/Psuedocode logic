@@ -2,9 +2,12 @@ hihat = [I, I, I, I, A, I, I, I, I, I, I, I, I, I, I, I]
 
 count = 0;
 
-BPM = 120
+BPM = 120 2 beats every 1000ms
+BPM = 60 1 beats every second or 1000ms
 Beats 16
 BPS = 2;
+
+https://toolstud.io/music/bpm.php?bpm=120&bpm_unit=4%2F4
 
 16/120 - result
 
@@ -23,3 +26,14 @@ setInterval() => {
 checkArray[count]
 }
 result
+
+const playHead = () {
+
+  return (<div className={playhead} playRate={playRate}> </div>)
+}
+
+if(isChecked && isActive){
+  sound.play(this)
+} else {
+  return
+}
