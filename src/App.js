@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles/index.css';
 import {Howl, Howler} from 'howler';
-import SimpleCard from './components/Columns'
+import SimpleCard from './Components/Columns'
 import BeatMachine from "./Components/BeatMachine"
 import InstrumentRow from './Components/InstrumentRow';
 import Bpm from "./helpers/useBPM"
@@ -24,9 +24,6 @@ const beats = Bpm();
         <h1>Hello World, Let's try a pull request!</h1>
         <h2>{beats} per minute</h2>
         <button onClick={playSound}>press</button>
-<<<<<<< HEAD
-        <SimpleCard/>
-=======
 
         <table border='2'>
       
@@ -40,7 +37,6 @@ const beats = Bpm();
            <InstrumentRow />
          </tbody>
         </table>
->>>>>>> master
       </>
     )
   }
