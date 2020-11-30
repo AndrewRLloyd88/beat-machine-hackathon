@@ -15,6 +15,7 @@ import { Howl, Howler } from 'howler';
 const App = () => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [tempo, setTempo] = useState(60);
+  let [counter, setCounter] = useState(0);
   
   const handleTempoChange = (event) => {
     const eventValue = event.target.value
@@ -33,9 +34,9 @@ const playSounds = (array) => {
   for (let i = 0; i < array.length; i++){
     playSound(array[i])
     console.log("play song array")
-    if (array.length == 0){
-      continue
-    }
+    // if (array.length == 0){
+    //   continue
+    // }
     console.log(array)
   }
 }
@@ -47,27 +48,43 @@ const playSounds = (array) => {
 //   return () => clearInterval(interval);
 // }, []);
 
+// const resetCounter = () => {
+//   counter === 15 ? setCounter(0) : null
+//   }
+
+//updates count that loop is dependent on (our 2nd useEffect)
   const beats = Bpm(tempo) 
   useEffect(() => {
-    if (isPlaying){
+    if(isPlaying){
       const interval = setInterval(() => {
-        loop();
+        setCounter(counter+1)
+        
+        console.log("in useEffect: ", counter);
       }, beats);
       return () => clearInterval(interval)
     }
   }, [isPlaying])
 
+  //if isPlaying === true run loop with counter
+  useEffect((counter) => {
+    if (isPlaying){
+      loop()
+  } 
+}, [isPlaying])
+
   const loop = () => {
-      for (let i = 0; i< 16; i++){
+      let i = counter
+
+        console.log("in loop: i: ", i)
           let soundArr = []
           for (let j = 0; j < 6; j++){
-            if (instruments[j].pattern[i] == 1){
+            console.log(j)
+            if (instruments[j].pattern[i] === 1){
               let soundSrc = instruments[j].sound
               soundArr.push(soundSrc)
             }
             playSounds(soundArr)
         }
-  }
   }
   const handlePlayButton = () => {
     setIsPlaying(true)

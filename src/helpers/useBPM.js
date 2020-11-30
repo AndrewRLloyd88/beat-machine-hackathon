@@ -3,5 +3,4 @@
 //I think the formula should be 60(seconds in a minute) * 1000 (1 second) = 60000ms in a minute / beats per minute
 export default function useBPM(bpm) {
   return (60 * 1000) / bpm;
-  console.log(2)
 }
