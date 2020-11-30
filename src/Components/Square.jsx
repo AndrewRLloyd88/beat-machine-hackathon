@@ -18,7 +18,7 @@ const Square = (props) => {
 
   return (
     <td
-      style={toggle ? { background: 'red', padding: '25px' } : { background: 'blue', padding: '25px' }}
+      style={toggle ? { background: props.color, padding: '25px' } : { background: '#151515', padding: '25px' }}
       onClick={() => playSound(props.sound)}
     />
   )

@@ -39,9 +39,9 @@ const App = () => {
     console.log(isPlaying)
   }
 
-  const instrumentRows = instruments.map((i) => <InstrumentRow instrumentName={i.name} instrumentSound={i.sound} />);
+  const instrumentRows = instruments.map((i) => <InstrumentRow instrumentName={i.name} instrumentSound={i.sound} instrumentColor={i.color} />);
   return (
-    <>
+    <div className="container">
       <BeatMachine />
       <PlayButton onClick={handlePlayButton} />
       <Tempo value={tempo} onTempoChange={(event) => {handleTempoChange(event)}} />
@@ -52,7 +52,7 @@ const App = () => {
           <BeatLabel />
         </tbody>
       </table>
-    </>
+    </div>
   )
 }
 
