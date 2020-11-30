@@ -57,8 +57,7 @@ const playSounds = (array) => {
   useEffect(() => {
     if(isPlaying){
       const interval = setInterval(() => {
-        setCounter(counter+1)
-        
+        counter = counter >= 15 ? 0 : counter + 1    
         console.log("in useEffect: ", counter);
       }, beats);
       return () => clearInterval(interval)
@@ -66,7 +65,7 @@ const playSounds = (array) => {
   }, [isPlaying])
 
   //if isPlaying === true run loop with counter
-  useEffect((counter) => {
+  useEffect(() => {
     if (isPlaying){
       loop()
   } 
