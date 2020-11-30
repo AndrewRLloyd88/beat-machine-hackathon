@@ -4,19 +4,34 @@
   text-align: center;
   margin: 6rem 0;
   padding: auto;
+  color: white;
 }
+.container {
+  padding: 20px;
+  margin: auto;
+  width: 60%;
+  background-color: #585858;
+}
+
 body {
-  background-color: white;
-  font-family: impact;
+  background-color: #C4C4C4;
+  font-family: arial;
   font-size: 20px;
+  color: white;
 }
 
 input {
   margin-left: 10px;
   font-size: 20px;
-  font-family: impact;
+  font-family: arial;
 }
 
 table {
   text-align: center;
+  border-spacing: 3px;
 }
+
+td.instrument {
+  text-align: right;
+}
+
