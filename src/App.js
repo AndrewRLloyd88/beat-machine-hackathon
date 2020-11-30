@@ -9,9 +9,8 @@ import Tempo from "./Components/Tempo"
 import instruments from "./helpers/instruments"
 import PlayButton from './Components/PlayButton';
 import StopButton from './Components/StopButton';
-import Volumn from './Components/Volumn'
+import Volume from './Components/Volume'
 import { Howl, Howler } from 'howler';
-
 
 const App = () => {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -106,7 +105,7 @@ const playSounds = (array) => {
       <BeatMachine />
       <PlayButton onClick={handlePlayButton} isPlaying={isPlaying}/>
       <StopButton onClick={handleStopBtn} />
-      <Volumn/>
+      <Volume/>
       <Tempo value={tempo} onTempoChange={(event) => {handleTempoChange(event)}} />
       <table border='0'>value={} 
         <tbody>
