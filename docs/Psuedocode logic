@@ -49,6 +49,10 @@ const instruments = [
   { name: 'kick', sound: "./DrumSamples/Kicks/Kick-A-Long1.wav", pattern: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }
 ];
 
+for (let instrument of instruments) {
+  for (let note of instrument.pattern)
+}
+
 // for(pattern of instruments){
 //   console.log(pattern.pattern)
 // }

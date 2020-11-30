@@ -14,6 +14,12 @@ const Square = (props) => {
     });
     sound.play();
     Howler.volume(1);
+    updatePattern()
+  }
+
+  function updatePattern(){
+    // to update the pattern number
+    console.log(props.pattern)
   }
 
   return (
