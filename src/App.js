@@ -15,7 +15,6 @@ import { Howl, Howler } from 'howler';
 const App = () => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [tempo, setTempo] = useState(60);
-  const [t, setT] = useState(0);
   
   const handleTempoChange = (event) => {
     const eventValue = event.target.value
@@ -41,42 +40,25 @@ const playSounds = (array) => {
   }
 }
 
-  const beats = Bpm(tempo) 
-  // useEffect(() => {
-  //   if(isPlaying){
-  //     setInterval(() => {
-  //       //const counter = 0;
-  //       //add business logic here to move playhead
-  //       for (let i = 0; i< 16; i++){
-  //         let soundArr = []
-  //         for (let j = 0; j < 6; j++){
-  //           console.log("playing this column")
-  //           if (instruments[j].pattern[i] == 1){
-  //             let soundSrc = instruments[j].sound
-  //             soundArr.push(soundSrc)
-  //           }
-  //           playSounds(soundArr)
-  //       }
-  //       //secondary function to check instruments[0].pattern[i]
-  //       // if Toggle{
-  //       // sound.play(instruments[0].sound)
-  //     //}
-  //       setT(t+1)
-  //       if (t == 15){
-  //         setIsPlaying(false)
-  //       }
-  //       }
-        
-  //     }, beats);
-  //   }
-  // }, [isPlaying])
+// useEffect(() => {
+//   const interval = setInterval(() => {
+//     setSeconds(seconds => seconds + 1);
+//   }, 1000);
+//   return () => clearInterval(interval);
+// }, []);
 
-  const handlePlayButton = () => {
-    setIsPlaying(true)
-    console.log(isPlaying)
-    if(isPlaying){
-      setInterval(() => {
-        for (let i = 0; i< 16; i++){
+  const beats = Bpm(tempo) 
+  useEffect(() => {
+    if (isPlaying){
+      const interval = setInterval(() => {
+        loop();
+      }, beats);
+      return () => clearInterval(interval)
+    }
+  }, [isPlaying])
+
+  const loop = () => {
+      for (let i = 0; i< 16; i++){
           let soundArr = []
           for (let j = 0; j < 6; j++){
             if (instruments[j].pattern[i] == 1){
@@ -85,14 +67,11 @@ const playSounds = (array) => {
             }
             playSounds(soundArr)
         }
-        setT(t+1)
-        if (t == 15){
-          setIsPlaying(false)
-        }
-        }
-        
-      }, beats);
-    }
+  }
+  }
+  const handlePlayButton = () => {
+    setIsPlaying(true)
+    console.log(isPlaying)
   }
 
   const handleStopBtn = () => {
