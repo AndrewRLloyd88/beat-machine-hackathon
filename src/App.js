@@ -13,7 +13,6 @@ import instruments from "./helpers/instruments"
 import PlayButton from './Components/PlayButton';
 
 const App = () => {
-const beats = Bpm();
   const playSound = () => {
     var sound = new Howl({
       src: [sounds[0].source],
