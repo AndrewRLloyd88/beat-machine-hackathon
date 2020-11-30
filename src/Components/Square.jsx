@@ -1,25 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../styles/index.css';
-import { Howl, Howler } from 'howler';
 
 const Square = (props) => {
 
-  const [toggle, setToggle] = useState(false);
-
-  const playSound = () => {
-    setToggle(!toggle);
-    var sound = new Howl({
-      src: [props.sound],
-      html5: true,
-    });
-    sound.play();
-    Howler.volume(1);
-  }
 
   return (
     <td
-      style={toggle ? { background: props.color, padding: '25px' } : { background: '#151515', padding: '25px' }}
-      onClick={() => playSound(props.sound)}
+      style={props.toggle ? { background: props.color, padding: '25px' } : { background: '#151515', padding: '25px' }}
+      changeAttr={props.changeAttr} onClick={props.onClick}
     />
   )
 }
