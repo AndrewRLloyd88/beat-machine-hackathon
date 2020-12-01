@@ -4,6 +4,9 @@ import '../styles/index.css';
 
 
 const InstrumentRow = (props) => {
+
+  
+  console.log("at instrument row")
   console.log(props.pattern)
   const squares = [];
   for (let i = 0; i < 16; i++) {

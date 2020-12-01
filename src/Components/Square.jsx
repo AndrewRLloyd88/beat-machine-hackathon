@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/index.css';
 import { Howl, Howler } from 'howler';
+import { PersonPinCircleSharp } from '@material-ui/icons';
 
 const Square = (props) => {
 console.log("in square: ", props)
@@ -14,12 +15,13 @@ console.log("in square: ", props)
     });
     sound.play();
     Howler.volume(1);
-    updatePattern()
+    updatePattern(props.pattern)
   }
 
-  function updatePattern(){
-    props.pattern = props.pattern === 1 ? 0 : 1
-    console.log(props.pattern[0])
+  function updatePattern(pattern){
+    // props.pattern = props.pattern === 1 ? 0 : 1
+    // console.log(props.pattern)
+
   }
 
   return (

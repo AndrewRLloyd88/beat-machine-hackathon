@@ -1,5 +1,5 @@
 // objects to represent each instrument
-const instruments = [
+let instruments = [
   { name: 'clap', sound: "./DrumSamples/Claps/Clap1.wav", pattern: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], color: 'pink' },
   { name: 'hi hat (open)', sound: "./DrumSamples/OpenHats/OH2.wav", pattern: [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], color: 'silver' },
   { name: 'hi hat (closed)', sound: "./DrumSamples/ClosedHats/Hats1.wav", pattern: [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], color: 'gold' },
