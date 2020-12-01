@@ -3,7 +3,7 @@ import '../styles/index.css';
 import { Howl, Howler } from 'howler';
 
 const Square = (props) => {
-
+console.log("in square: ", props)
   const [toggle, setToggle] = useState(false);
 
   const playSound = () => {
@@ -18,8 +18,8 @@ const Square = (props) => {
   }
 
   function updatePattern(){
-    // to update the pattern number
-    console.log(props.pattern)
+    props.pattern = props.pattern === 1 ? 0 : 1
+    console.log(props.pattern[0])
   }
 
   return (
