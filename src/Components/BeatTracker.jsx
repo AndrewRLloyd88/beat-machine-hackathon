@@ -4,7 +4,9 @@ import {Howl, Howler} from 'howler';
 import BPM from "../helpers/useBPM"
 import '../styles/playhead.css';
 
-const BeatTracker = () => {
+const BeatTracker = (props) => {
+  // let [counter] = props;
+  // console.log(counter)
   const beats = BPM();
   const squares = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 

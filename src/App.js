@@ -20,6 +20,7 @@ const App = () => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [tempo, setTempo] = useState(60);
   let [counter, setCounter] = useState(0);
+<<<<<<< HEAD
 //   let instrumentsOne =  [
 //     {
 //         name : "clap",
@@ -59,6 +60,9 @@ const App = () => {
 //     }
 // ]
 //const [instruments, setInstruments] = useState(instrumentsOne)
+=======
+  let [grid, updateGrid] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0])
+>>>>>>> aa33ffba814fa47c9e05225ba606fcd7ac441e92
   
   const handleTempoChange = (event) => {
     const eventValue = event.target.value
@@ -89,20 +93,29 @@ const playSounds = (array) => {
   useEffect(() => {
     if(isPlaying){
       const interval = setInterval(() => {
+        // setCounter(counter = counter + 1)
         counter = counter >= 15 ? 0 : counter + 1  
+        // if(counter > 15) {
+        //   setCounter(0);
+        // } else {
+        //   setCounter(counter + 1);
+        // }
         loop()  
         console.log("in useEffect: ", counter);
       }, beats);
       return () => clearInterval(interval)
     }
-  }, [isPlaying])
+  }, [isPlaying, beats])
 
   const loop = () => {
+    // if(counter > 15){
+    //   setCounter(0)
+    // }
       let i = counter
-        console.log("in loop: i: ", i)
+        // console.log("in loop: i: ", i)
           let soundArr = []
           for (let j = 0; j < 6; j++){
-            console.log(j)
+            // console.log(j)
             if (instruments[j].pattern[i] === 1){
               let soundSrc = instruments[j].sound
               soundArr.push(soundSrc)
@@ -129,7 +142,7 @@ const playSounds = (array) => {
       <Tempo value={tempo} onTempoChange={(event) => {handleTempoChange(event)}} />
       <table border='0'>value={} 
         <tbody>
-          <BeatTracker />
+          <BeatTracker count={counter} updateGrid={updateGrid}/>
           {instrumentRows}
           <BeatLabel />
         </tbody>

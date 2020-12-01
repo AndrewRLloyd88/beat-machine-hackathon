@@ -4,7 +4,7 @@ import { Howl, Howler } from 'howler';
 import { PersonPinCircleSharp } from '@material-ui/icons';
 
 const Square = (props) => {
-console.log("in square: ", props)
+// console.log("in square: ", props)
   const [toggle, setToggle] = useState(false);
 
   const playSound = () => {
@@ -18,10 +18,16 @@ console.log("in square: ", props)
     updatePattern(props.pattern)
   }
 
+<<<<<<< HEAD
   function updatePattern(pattern){
     // props.pattern = props.pattern === 1 ? 0 : 1
     // console.log(props.pattern)
 
+=======
+  function updatePattern(){
+    // props.pattern = props.pattern === 1 ? 0 : 1
+    console.log(props.pattern[0])
+>>>>>>> aa33ffba814fa47c9e05225ba606fcd7ac441e92
   }
 
   return (
