@@ -41,39 +41,21 @@ const playSounds = (array) => {
   }
 }
 
-// useEffect(() => {
-//   const interval = setInterval(() => {
-//     setSeconds(seconds => seconds + 1);
-//   }, 1000);
-//   return () => clearInterval(interval);
-// }, []);
-
-// const resetCounter = () => {
-//   counter === 15 ? setCounter(0) : null
-//   }
-
 //updates count that loop is dependent on (our 2nd useEffect)
   const beats = Bpm(tempo) 
   useEffect(() => {
     if(isPlaying){
       const interval = setInterval(() => {
-        counter = counter >= 15 ? 0 : counter + 1    
+        counter = counter >= 15 ? 0 : counter + 1  
+        loop()  
         console.log("in useEffect: ", counter);
       }, beats);
       return () => clearInterval(interval)
     }
   }, [isPlaying])
 
-  //if isPlaying === true run loop with counter
-  useEffect(() => {
-    if (isPlaying){
-      loop()
-  } 
-}, [isPlaying])
-
   const loop = () => {
       let i = counter
-
         console.log("in loop: i: ", i)
           let soundArr = []
           for (let j = 0; j < 6; j++){
