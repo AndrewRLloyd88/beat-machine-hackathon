@@ -15,6 +15,7 @@ import { Howl, Howler } from 'howler';
 const App = () => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [tempo, setTempo] = useState(60);
+
   // had to set initial value to -1 to allow counting from 0!
   let [counter, setCounter] = useState(-1);
   const [grid, setGrid] = useState([
@@ -40,7 +41,7 @@ const App = () => {
     }
     setGrid(arrayToPassSetGrid);
   }
-
+  
   const handleTempoChange = (event) => {
     const eventValue = event.target.value
     setTempo(parseInt(eventValue))
@@ -116,7 +117,7 @@ const App = () => {
       <Tempo value={tempo} onTempoChange={(event) => { handleTempoChange(event) }} />
       <table border='0'>
         <tbody>
-          <BeatTracker />
+          <BeatTracker count={counter} updateGrid={updateGrid}/>
           {instrumentRows}
           <BeatLabel />
         </tbody>

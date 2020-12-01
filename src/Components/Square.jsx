@@ -3,9 +3,6 @@ import '../styles/index.css';
 import { Howl, Howler } from 'howler';
 
 const Square = (props) => {
-  // console.log('props in Square: ', props)
-
-
   const [toggle, setToggle] = useState(false);
 
   const handleClick = () => {
