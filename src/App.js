@@ -96,7 +96,7 @@ const playSounds = (array) => {
       <Tempo value={tempo} onTempoChange={(event) => {handleTempoChange(event)}} />
       <table border='0'>value={} 
         <tbody>
-          <BeatTracker count={counter} updateGrid={updateGrid}/>
+          <BeatTracker tempo={tempo} isPlaying={isPlaying}/>
           {instrumentRows}
           <BeatLabel />
         </tbody>
