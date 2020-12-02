@@ -44,6 +44,7 @@ const App = () => {
   
   const handleTempoChange = (event) => {
     const eventValue = event.target.value
+    console.log(eventValue)
     setTempo(parseInt(eventValue))
   }
 
@@ -62,7 +63,7 @@ const App = () => {
   }
 
   //updates count that loop is dependent on (our 2nd useEffect)
-  const beats = Bpm(tempo)
+  let beats = Bpm(tempo)
   useEffect(() => {
     if (isPlaying) {
       const interval = setInterval(() => {
@@ -117,7 +118,7 @@ const App = () => {
       <Tempo value={tempo} onTempoChange={(event) => { handleTempoChange(event) }} />
       <table border='0'>
         <tbody>
-          <BeatTracker count={counter} updateGrid={updateGrid}/>
+          <BeatTracker isPlaying={isPlaying} tempo={tempo}/>
           {instrumentRows}
           <BeatLabel />
         </tbody>
