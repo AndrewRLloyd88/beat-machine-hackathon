@@ -16,102 +16,122 @@ import Inst from "./Components/Inst";
 
 const App = () => {
 
-  console.log("Inst: ")
-  console.log(Inst)
   const [isPlaying, setIsPlaying] = useState(false)
   const [tempo, setTempo] = useState(60);
   const [volNum, setVolNum] = useState(50)
-  console.log("at app: " + volNum)
-
-  let [counter, setCounter] = useState(0);
-  let [grid, updateGrid] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0])
 
   const handleVol = (event, volNum) => {
     setVolNum(volNum);
+    console.log("at app: " + volNum)
   };
 
+
+  // had to set initial value to -1 to allow counting from 0!
+  let [counter, setCounter] = useState(-1);
+  const [grid, setGrid] = useState([
+    instruments[0].pattern,
+    instruments[1].pattern,
+    instruments[2].pattern,
+    instruments[3].pattern,
+    instruments[4].pattern,
+    instruments[5].pattern
+  ]);
+
+  const updateGrid = (row, column, toggle) => {
+    // console.log('row, col, toggle', row, column, toggle);
+    const clonedObj = { ...grid[row] };
+    clonedObj[column] = toggle;
+    const arrayToPassSetGrid = [];
+    for (let i = 0; i < 6; i++) {
+      if (row === i) {
+        arrayToPassSetGrid.push(clonedObj);
+      } else {
+        arrayToPassSetGrid.push(grid[i]);
+      }
+    }
+    setGrid(arrayToPassSetGrid);
+  }
   
   const handleTempoChange = (event) => {
     const eventValue = event.target.value
+    console.log(eventValue)
     setTempo(parseInt(eventValue))
   }
 
 
-  const playSound = (sound) => {
+  const playSound = (source) => {
     var sound = new Howl({
-      src: [sound],
+      src: [source],
       html5: true,
       volume: (volNum/100)
+  
     });
     sound.play();
   }
-  
-const playSounds = (array) => {
-  for (let i = 0; i < array.length; i++){
-    playSound(array[i])
-    console.log("play song array")
-    // if (array.length == 0){
-    //   continue
-    // }
-    console.log(array)
-  }
-}
 
-//updates count that loop is dependent on (our 2nd useEffect)
-  const beats = Bpm(tempo) 
+  const playSounds = (array) => {
+    for (let i = 0; i < array.length; i++) {
+      playSound(array[i]);
+    }
+  }
+
+  //updates count that loop is dependent on (our 2nd useEffect)
+  let beats = Bpm(tempo)
   useEffect(() => {
-    if(isPlaying){
+    if (isPlaying) {
       const interval = setInterval(() => {
-        // setCounter(counter = counter + 1)
-        counter = counter >= 15 ? 0 : counter + 1  
-        // if(counter > 15) {
-        //   setCounter(0);
-        // } else {
-        //   setCounter(counter + 1);
-        // }
-        loop()  
-        console.log("in useEffect: ", counter);
+        // each square, counter increments to one (should be using and if else and setCounter here since it is part of state?)
+        
+        counter = counter >= 15 ? 0 : counter + 1
+        // loop creates an array of up to 6 sounds that are then played at the same time 
+        loop();
       }, beats);
       return () => clearInterval(interval)
     }
-  }, [isPlaying, beats])
+  }, [isPlaying, grid, beats, volNum])
 
   const loop = () => {
-    // if(counter > 15){
-    //   setCounter(0)
-    // }
-      let i = counter
-        // console.log("in loop: i: ", i)
-          let soundArr = []
-          for (let j = 0; j < 6; j++){
-            // console.log(j)
-            if (instruments[j].pattern[i] === 1){
-              let soundSrc = instruments[j].sound
-              soundArr.push(soundSrc)
-            }
-            playSounds(soundArr)
-        }
+    let soundArr = []
+    for (let j = 0; j < 6; j++) {
+      if (grid[j][counter]) {
+        let soundSrc = instruments[j].sound
+        soundArr.push(soundSrc)
+      }
+      playSounds(soundArr)
+    }
   }
+
   const handlePlayButton = () => {
     setIsPlaying(true)
-    console.log(isPlaying)
   }
 
   const handleStopBtn = () => {
     setIsPlaying(false)
-    console.log("stop playing")
   }
-  const instrumentRows = instruments.map((i) => <InstrumentRow  volNum={volNum} instrumentName={i.name} instrumentSound={i.sound} pattern={i.pattern} instrumentColor={i.color} />);
+
+  const instrumentRows = instruments.map((instrument, row) => {
+    return (
+      <InstrumentRow
+        key={row}
+        row={row}
+        updateGrid={(row, column, toggle) => updateGrid(row, column, toggle)}
+        instrumentName={instrument.name}
+        instrumentSound={instrument.sound}
+        pattern={instrument.pattern}
+        instrumentColor={instrument.color}
+      />)
+  });
+
   return (
     <div className="container">
       <BeatMachine />
-          <PlayButton onClick={handlePlayButton} isPlaying={isPlaying}/>
-          <StopButton onClick={handleStopBtn} />
-          <Volume volNum={volNum} onChange={handleVol}/>
-      <Tempo value={tempo} onTempoChange={(event) => {handleTempoChange(event)}} />
-      <table className="tableStyle" border='0'>value={} 
+      <PlayButton onClick={handlePlayButton} isPlaying={isPlaying} />
+      <StopButton onClick={handleStopBtn} />
+      <Volume volNum={volNum} onChange={handleVol}/>
+      <Tempo value={tempo} onTempoChange={(event) => { handleTempoChange(event) }} />
+      <table border='0'>
         <tbody>
-          <BeatTracker count={counter} updateGrid={updateGrid}/>
+          <BeatTracker isPlaying={isPlaying} tempo={tempo}/>
           {instrumentRows}
           <BeatLabel />
         </tbody>

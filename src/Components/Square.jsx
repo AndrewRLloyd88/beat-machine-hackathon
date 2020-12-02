@@ -4,29 +4,27 @@ import { Howl, Howler } from 'howler';
 import { PersonPinCircleSharp } from '@material-ui/icons';
 
 const Square = (props) => {
-// console.log("in square: ", props)
   const [toggle, setToggle] = useState(false);
 
-  const playSound = () => {
+  const handleClick = () => {
+    // setToggle(!toggle) seems to change the color but it does not update in state??
     setToggle(!toggle);
-    var sound = new Howl({
-      src: [props.sound],
-      html5: true,
-    });
-    sound.play();
-    Howler.volume(1);
-    updatePattern(props.pattern)
-  }
-
-  function updatePattern(){
-    // props.pattern = props.pattern === 1 ? 0 : 1
-    console.log(props.pattern[0])
+    if(!toggle) {
+      let sound = new Howl({
+        src: [props.sound],
+        html5: true,
+      });
+      sound.play();
+      Howler.volume(1);
+    }
+    // need to pass row, col, toggle back up to the grid in App.js, but for some reason toggle needs to be flipped again???
+    props.updateGrid(props.row, props.column, !toggle);
   }
 
   return (
     <td
       style={toggle ? { background: props.color, padding: '25px' } : { background: '#151515', padding: '25px' }}
-      onClick={() => playSound(props.sound)}
+      onClick={() => handleClick()}
     />
   )
 }
