@@ -11,10 +11,20 @@ import PlayButton from './Components/PlayButton';
 import StopButton from './Components/StopButton';
 import Volume from './Components/Volume'
 import { Howl, Howler } from 'howler';
+import Inst from "./Components/Inst";
+
 
 const App = () => {
+
   const [isPlaying, setIsPlaying] = useState(false)
   const [tempo, setTempo] = useState(60);
+  const [volNum, setVolNum] = useState(50)
+
+  const handleVol = (event, volNum) => {
+    setVolNum(volNum);
+    console.log("at app: " + volNum)
+  };
+
 
   // had to set initial value to -1 to allow counting from 0!
   let [counter, setCounter] = useState(-1);
@@ -48,10 +58,13 @@ const App = () => {
     setTempo(parseInt(eventValue))
   }
 
+
   const playSound = (source) => {
     var sound = new Howl({
       src: [source],
-      html5: true
+      html5: true,
+      volume: (volNum/100)
+  
     });
     sound.play();
   }
@@ -75,7 +88,7 @@ const App = () => {
       }, beats);
       return () => clearInterval(interval)
     }
-  }, [isPlaying, grid, beats])
+  }, [isPlaying, grid, beats, volNum])
 
   const loop = () => {
     let soundArr = []
@@ -114,7 +127,7 @@ const App = () => {
       <BeatMachine />
       <PlayButton onClick={handlePlayButton} isPlaying={isPlaying} />
       <StopButton onClick={handleStopBtn} />
-      <Volume />
+      <Volume volNum={volNum} onChange={handleVol}/>
       <Tempo value={tempo} onTempoChange={(event) => { handleTempoChange(event) }} />
       <table border='0'>
         <tbody>

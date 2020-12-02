@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/index.css';
 import { Howl, Howler } from 'howler';
+import { PersonPinCircleSharp } from '@material-ui/icons';
 
 const Square = (props) => {
   const [toggle, setToggle] = useState(false);
