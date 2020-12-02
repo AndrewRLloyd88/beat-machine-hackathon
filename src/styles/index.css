@@ -26,7 +26,7 @@ input {
   font-family: arial;
 }
 
-table {
+.tableStyle {
   text-align: center;
   border-spacing: 3px;
 }
@@ -35,3 +35,28 @@ td.instrument {
   text-align: right;
 }
 
+@media only screen and (max-width: 1580px) {
+    .container {
+      padding: 20px;
+      margin: auto;
+      width: 70%;
+      background-color: #585858;
+}
+}
+
+@media only screen and (max-width: 1300px) {
+  .container {
+    padding: 20px;
+    margin: auto;
+    width: 85%;
+    background-color: #585858;
+}
+}
+@media only screen and (max-width: 1100px) {
+  .container {
+    padding: 20px;
+    margin: auto;
+    width: 100%;
+    background-color: #585858;
+}
+}

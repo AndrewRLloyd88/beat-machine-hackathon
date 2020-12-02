@@ -18,16 +18,9 @@ const Square = (props) => {
     updatePattern(props.pattern)
   }
 
-<<<<<<< HEAD
-  function updatePattern(pattern){
-    // props.pattern = props.pattern === 1 ? 0 : 1
-    // console.log(props.pattern)
-
-=======
   function updatePattern(){
     // props.pattern = props.pattern === 1 ? 0 : 1
     console.log(props.pattern[0])
->>>>>>> aa33ffba814fa47c9e05225ba606fcd7ac441e92
   }
 
   return (

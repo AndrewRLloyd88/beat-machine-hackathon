@@ -11,68 +11,37 @@ import PlayButton from './Components/PlayButton';
 import StopButton from './Components/StopButton';
 import Volume from './Components/Volume'
 import { Howl, Howler } from 'howler';
-import Inst from "./Components/Inst"
+import Inst from "./Components/Inst";
 
 
 const App = () => {
+
   console.log("Inst: ")
   console.log(Inst)
   const [isPlaying, setIsPlaying] = useState(false)
   const [tempo, setTempo] = useState(60);
+  const [volNum, setVolNum] = useState(50)
+  console.log("at app: " + volNum)
+
   let [counter, setCounter] = useState(0);
-<<<<<<< HEAD
-//   let instrumentsOne =  [
-//     {
-//         name : "clap",
-//         sound : "./DrumSamples/Claps/Clap1.wav",
-//         pattern: [true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-//         color: 'pink'
-//     },
-//     {
-//         name : "hi hat (open)",
-//         sound : "./DrumSamples/OpenHats/OH2.wav",
-//         pattern: [false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-//         color: 'silver'
-//     },
-//     {
-//         name : "hi hat (closed)",
-//         sound : "./DrumSamples/ClosedHats/Hatstrue.wav",
-//         pattern: [false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false],
-//         color: 'gold'
-//     },
-//     {
-//         name: 'snare 2',
-//         sound: "./DrumSamples/AltSnaretrue/AltSD25.wav",
-//         pattern: [true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false], 
-//         color: '#falsefalseDACD' 
-//     },
-//     {
-//         name: 'snare true', 
-//         sound: "./DrumSamples/MainSnare/Snaretrue.wav", 
-//         pattern: [false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false], 
-//         color: 'orange'
-//     },
-//     {
-//         name: 'kick', 
-//         sound: "./DrumSamples/Kicks/Kick-A-Longtrue.wav", 
-//         pattern: [false, true, true, false, false, false, false, false, false, false, true, true, true, true, false, false], 
-//         color: 'purple'
-//     }
-// ]
-//const [instruments, setInstruments] = useState(instrumentsOne)
-=======
   let [grid, updateGrid] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0])
->>>>>>> aa33ffba814fa47c9e05225ba606fcd7ac441e92
+
+  const handleVol = (event, volNum) => {
+    setVolNum(volNum);
+  };
+
   
   const handleTempoChange = (event) => {
     const eventValue = event.target.value
     setTempo(parseInt(eventValue))
   }
 
+
   const playSound = (sound) => {
     var sound = new Howl({
       src: [sound],
       html5: true,
+      volume: (volNum/100)
     });
     sound.play();
   }
@@ -132,15 +101,15 @@ const playSounds = (array) => {
     setIsPlaying(false)
     console.log("stop playing")
   }
-  const instrumentRows = instruments.map((i) => <InstrumentRow  instrumentName={i.name} instrumentSound={i.sound} pattern={i.pattern} instrumentColor={i.color} />);
+  const instrumentRows = instruments.map((i) => <InstrumentRow  volNum={volNum} instrumentName={i.name} instrumentSound={i.sound} pattern={i.pattern} instrumentColor={i.color} />);
   return (
     <div className="container">
       <BeatMachine />
-      <PlayButton onClick={handlePlayButton} isPlaying={isPlaying}/>
-      <StopButton onClick={handleStopBtn} />
-      <Volume/>
+          <PlayButton onClick={handlePlayButton} isPlaying={isPlaying}/>
+          <StopButton onClick={handleStopBtn} />
+          <Volume volNum={volNum} onChange={handleVol}/>
       <Tempo value={tempo} onTempoChange={(event) => {handleTempoChange(event)}} />
-      <table border='0'>value={} 
+      <table className="tableStyle" border='0'>value={} 
         <tbody>
           <BeatTracker count={counter} updateGrid={updateGrid}/>
           {instrumentRows}
