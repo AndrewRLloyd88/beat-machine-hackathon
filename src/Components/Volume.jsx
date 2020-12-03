@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
-import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 import VolumeUp from '@material-ui/icons/VolumeUp';
 import VolumeDown from '@material-ui/icons/VolumeDown';
 import Grid from '@material-ui/core/Grid';
+import '../styles/index.css';
 
 
 
@@ -21,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 const PrettoSlider = withStyles({
   root: {
-    color: '#52af77',
+    color: '#00FA7D',
     height: 8,
   },
   thumb: {
@@ -51,21 +49,21 @@ const PrettoSlider = withStyles({
 
 const Volume = (props) => {
   const classes = useStyles();
-  console.log("at vloume ")
-  console.log(props.volNum)
+  // console.log("at vloume ")
+  // console.log(props.volNum)
 
  
   return (
     <div className={classes.root}>
       <Grid container spacing={2}>
         <Grid item>
-          <VolumeDown />
+          <VolumeDown className="volIcon" fontSize="large"/>
         </Grid>
         <Grid item xs>
           <PrettoSlider value={props.volNum} onChange={props.onChange} aria-labelledby="continuous-slider" />
         </Grid>
         <Grid item>
-          <VolumeUp />
+          <VolumeUp className="volIcon" fontSize="large"/>
         </Grid>
       </Grid>
     </div>

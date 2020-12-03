@@ -1,6 +1,11 @@
+/* https://www.pngkey.com/png/full/237-2373068_linuxserver-beets-cartoon-beet-png.png */
+
+@import url("https://fonts.googleapis.com/css2?family=Cabin&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,700&display=swap");
+
 .App {
   display: flex;
-  font-family: sans-serif;
+  font-family: "Cabin", sans-serif;
   text-align: center;
   margin: 6rem 0;
   padding: auto;
@@ -10,20 +15,24 @@
   padding: 20px;
   margin: auto;
   width: 60%;
-  background-color: #585858;
+  background-color: #bd1a74;
+  box-shadow: 10px 10px #222222ad;
+  background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
 }
 
 body {
-  background-color: #C4C4C4;
-  font-family: arial;
+  background-color: #604222;
+  font-family: "Cabin", sans-serif;
   font-size: 20px;
   color: white;
+  background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
 }
 
 input {
   margin-left: 10px;
   font-size: 20px;
-  font-family: arial;
+  font-family: fantasy;
+  padding-left: 10px;
 }
 
 .tableStyle {
@@ -32,31 +41,84 @@ input {
 }
 
 td.instrument {
-  text-align: right;
+  text-align: center;
+  font-family: "Cabin", sans-serif;
+  font-weight: bold;
+  padding-right: 10px;
+  background-color: #bd1a7486;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.volTempo {
+  display: flex;
+  flex-direction: row;
+}
+.volStyle {
+  margin-right: 80px;
+}
+
+.tempoBorder {
+  border-style: solid;
+  border-radius: 15px;
+  border-width: 5px;
+  opacity: 0.9;
+  width: 70px;
+  color: #151615;
+  border-color: #bd1a7486;
+}
+.temStyle {
+  color: #ffffff;
+  font-family: "Cabin", sans-serif;
+  text-shadow: 2px 2px 5px gray;
+}
+.poStyle {
+  color: pink;
+  font-family: "Cabin", sans-serif;
+  text-shadow: 2px 2px 5px gray;
+}
+.btnGroup {
+  display: flex;
+  flex-direction: row;
+}
+.tCell {
+  border-radius: 3px;
+}
+
+.volIcon {
+  color: #ffffff;
+}
+
+.titleImg {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 @media only screen and (max-width: 1580px) {
-    .container {
-      padding: 20px;
-      margin: auto;
-      width: 70%;
-      background-color: #585858;
-}
+  .container {
+    padding: 20px;
+    margin: auto;
+    width: 70%;
+    background-color: #bd1a74;
+    border-radius: 5px;
+  }
 }
 
 @media only screen and (max-width: 1300px) {
   .container {
     padding: 20px;
     margin: auto;
-    width: 85%;
-    background-color: #585858;
-}
+    width: 88%;
+    background-color: #bd1a74;
+  }
 }
 @media only screen and (max-width: 1100px) {
   .container {
     padding: 20px;
     margin: auto;
-    width: 100%;
-    background-color: #585858;
-}
+    width: 95%;
+    background-color: #bd1a74;
+  }
 }

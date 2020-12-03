@@ -1,13 +1,15 @@
 .playhead {
-  background-color: rgb(0, 200, 100);
+  background-color: rgb(0, 250, 125);
   padding: 25px;
-  opacity: 0.5;
+  opacity: 0.9;
+  border-radius: 3px;
 }
 
 .inactive {
   background-color: rgb(215, 246, 231);
   padding: 25px;
   opacity: 0.5;
+  border-radius: 3px;
 }
 
 .hidden {

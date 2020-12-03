@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/index.css';
-import {Howl, Howler} from 'howler';
 import BPM from "../helpers/useBPM"
 import '../styles/playhead.css';
 
 const BeatTracker = (props) => {
-  const {isPlaying, tempo} = props;
+  const {isPlaying, tempo, counter} = props;
+  let newCounter = counter;
   const beats = BPM(tempo);
   let [animCount, setAnimCount] = useState(0)
   const [squares, setSquares] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
@@ -18,7 +18,6 @@ const BeatTracker = (props) => {
 
 // const setDumbSquares = squares.map((square) => ( <td key={square} className={square > 0 ? "playhead" : "inactive"}></td> ))
 
-
 //helper function that gets the previous square (to remove classes)
 const getPreviousSquare = () => {
 if(animCount === 0){
@@ -26,6 +25,10 @@ if(animCount === 0){
 } else {
   return document.getElementById(`${animCount - 1}`)
 }
+}
+
+const logCounter = () => {
+  console.log(newCounter)
 }
 
 //gets index position and assigns that to setSquares
@@ -51,24 +54,16 @@ if(animCount === 0){
 
  //resets the state of the playhead
 const resetSquares = () => {
-  setAnimCount(0)
+  // setAnimCount(0)
   setSquares([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
     setPlayHeadArray(squares.map((square, i) => ( <td key={square} id={i} className={square > 0 ? "playhead" : "inactive"}></td> )))
 }
 //handling page re-renders
  useEffect(() => {
-  if(isPlaying){
-    const interval = setInterval(() => {
-      playHeadLoop()  
-      //resetSquares() makes the playHead clear after each pass
-      resetSquares()
-      animCount = animCount >= 15 ? 0 : animCount + 1  
-    }, beats);
-    return () => clearInterval(interval)
-  } else {
+  if(!isPlaying) {
     resetSquares()
   }
-}, [isPlaying, beats])
+}, [isPlaying])
 
 //mocking <tds> and hiding them was the only way I could work around the map
 return isPlaying ? 

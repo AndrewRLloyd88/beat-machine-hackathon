@@ -3,10 +3,20 @@ import '../styles/index.css';
 import {Howl, Howler} from 'howler';
 import StopIcon from '@material-ui/icons/Stop';
 import { Button, makeStyles } from '@material-ui/core';
+import { orange } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
+    backgroundColor: '#330704',
+    border: '1px solid',
+    borderColor: '#000',
+    '&:hover': {
+      backgroundColor: '#440704',
+      color: '#FFF',
+      border: '1px solid',
+      borderColor: '#FFF'
+  }
   },
 }));
 
@@ -17,9 +27,10 @@ const StopButton = (props) => {
       <>
            <Button 
            variant="contained"
-           color="default"
+           color="secondary"
            className={classes.button}
            startIcon={<StopIcon/>}
+           disabled={!props.isPlaying}
            onClick={props.onClick}>Stop</Button>
       </>
     )
