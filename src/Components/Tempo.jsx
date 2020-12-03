@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import '../styles/index.css';
 
 const Tempo = (props) => {
-console.log("in tempo: ", props)
 
   return (
     <div>
-      <label>Tempo</label>
+      <label className="temStyle">Tem<span className="poStyle">po</span></label>
       <input
+        className="tempoBorder"
         label='Tempo'
         type='number'
         min='40'
