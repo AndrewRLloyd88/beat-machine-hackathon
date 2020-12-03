@@ -6,7 +6,7 @@ import Bpm from "./helpers/useBPM"
 import BeatTracker from "./Components/BeatTracker"
 import BeatLabel from "./Components/BeatLabel"
 import Tempo from "./Components/Tempo"
-import instruments from "./helpers/instruments"
+import { instruments, getBassNote } from "./helpers/instruments"
 import PlayButton from './Components/PlayButton';
 import StopButton from './Components/StopButton';
 import Volume from './Components/Volume'
@@ -34,7 +34,8 @@ const App = () => {
     instruments[2].pattern,
     instruments[3].pattern,
     instruments[4].pattern,
-    instruments[5].pattern
+    instruments[5].pattern,
+    instruments[6].pattern
   ]);
 
   const updateGrid = (row, column, toggle) => {
@@ -42,7 +43,7 @@ const App = () => {
     const clonedObj = { ...grid[row] };
     clonedObj[column] = toggle;
     const arrayToPassSetGrid = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 7; i++) {
       if (row === i) {
         arrayToPassSetGrid.push(clonedObj);
       } else {
@@ -92,9 +93,9 @@ const App = () => {
 
   const loop = () => {
     let soundArr = []
-    for (let j = 0; j < 6; j++) {
-      if (grid[j][counter]) {
-        let soundSrc = instruments[j].sound
+    for (let j = 0; j < 7; j++) {
+      if (grid[j][counter]) {  
+        let soundSrc = (instruments[j].name === 'bass') ? getBassNote(counter) : instruments[j].sound;
         soundArr.push(soundSrc)
       }
       playSounds(soundArr)
