@@ -16,10 +16,10 @@ const PlayButton = (props) => {
       <div>
       {props.isPlaying ? (<Button 
       variant="outlined"
-      color="secondary"
+      color="primary"
       className={classes.button}
       disabled={props.isPlaying}
-      onClick={props.onClick}>Playing...</Button>) : (<Button 
+      onClick={props.onClick}>Playing..</Button>) : (<Button 
         variant="contained"
         color="primary"
         className={classes.button}

@@ -124,12 +124,14 @@ const App = () => {
 
   return (
     <div className="container">
+      <div className="titleImg">
       <BeatMachine />
+      <img src="https://www.pngkey.com/png/full/237-2373068_linuxserver-beets-cartoon-beet-png.png" alt="beetJuice logo" width="200" height="200"></img>;
+      </div>
       <div className="btnGroup">
       <PlayButton onClick={handlePlayButton} isPlaying={isPlaying} />
       <StopButton onClick={handleStopBtn} isPlaying={isPlaying}/>
       </div>
-      <br/>
       <br/>
       <div className="volTempo">
         <div className="volStyle">

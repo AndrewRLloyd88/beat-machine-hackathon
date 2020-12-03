@@ -22,7 +22,7 @@ const Square = (props) => {
   }
 
   return (
-    <td
+    <td className="tCell"
       style={toggle ? { background: props.color, padding: '25px' } : { background: '#151515', padding: '25px' }}
       onClick={() => handleClick()}
     />
