@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../styles/index.css';
 import { Howl, Howler } from 'howler';
 import { PersonPinCircleSharp } from '@material-ui/icons';
+import { getBassNote } from '../helpers/instruments'
 
 const Square = (props) => {
   const [toggle, setToggle] = useState(false);
@@ -11,7 +12,7 @@ const Square = (props) => {
     setToggle(!toggle);
     if(!toggle) {
       let sound = new Howl({
-        src: [props.sound],
+        src: [(props.name === 'Bassline') ? getBassNote(props.column) : props.sound],
         html5: true,
       });
       sound.play();
