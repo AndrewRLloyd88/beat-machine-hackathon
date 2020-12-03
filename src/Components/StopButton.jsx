@@ -17,9 +17,10 @@ const StopButton = (props) => {
       <>
            <Button 
            variant="contained"
-           color="default"
+           color="secondary"
            className={classes.button}
            startIcon={<StopIcon/>}
+           disabled={!props.isPlaying}
            onClick={props.onClick}>Stop</Button>
       </>
     )

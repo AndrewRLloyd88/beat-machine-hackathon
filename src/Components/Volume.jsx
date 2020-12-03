@@ -59,13 +59,13 @@ const Volume = (props) => {
     <div className={classes.root}>
       <Grid container spacing={2}>
         <Grid item>
-          <VolumeDown />
+          <VolumeDown fontSize="large"/>
         </Grid>
         <Grid item xs>
           <PrettoSlider value={props.volNum} onChange={props.onChange} aria-labelledby="continuous-slider" />
         </Grid>
         <Grid item>
-          <VolumeUp />
+          <VolumeUp fontSize="large"/>
         </Grid>
       </Grid>
     </div>

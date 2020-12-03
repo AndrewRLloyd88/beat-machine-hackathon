@@ -2,12 +2,14 @@ import React from 'react';
 import '../styles/index.css';
 import './PlayButton'
 import PlayButton from './PlayButton';
+import '../styles/beatMachine.css';
+
 
 const BeatMachine = () => {
 
     return(
       <>
-        <h1>BeatMachine</h1>
+        <div className="beatMachineTitle">BeatMachine</div>
         {/* <PlayButton /> */}
       </>
     )

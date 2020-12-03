@@ -125,10 +125,21 @@ const App = () => {
   return (
     <div className="container">
       <BeatMachine />
+      <div className="btnGroup">
       <PlayButton onClick={handlePlayButton} isPlaying={isPlaying} />
-      <StopButton onClick={handleStopBtn} />
-      <Volume volNum={volNum} onChange={handleVol}/>
-      <Tempo value={tempo} onTempoChange={(event) => { handleTempoChange(event) }} />
+      <StopButton onClick={handleStopBtn} isPlaying={isPlaying}/>
+      </div>
+      <br/>
+      <br/>
+      <div className="volTempo">
+        <div className="volStyle">
+          <Volume volNum={volNum} onChange={handleVol}/>
+        </div>
+        <div className="tempoStyle">
+          <Tempo value={tempo} onTempoChange={(event) => { handleTempoChange(event) }} />
+        </div>
+      </div>
+      <br/>
       <table border='0'>
         <tbody>
           <BeatTracker isPlaying={isPlaying} tempo={tempo}/>

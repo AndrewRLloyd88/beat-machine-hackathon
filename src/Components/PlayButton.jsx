@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import '../styles/index.css';
-import {Howl, Howler} from 'howler';
 import { Button, makeStyles } from '@material-ui/core';
 import PlayCircleFilledWhiteIcon from '@material-ui/icons/PlayCircleFilledWhite';
-import StopIcon from '@material-ui/icons/Stop';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -14,25 +12,20 @@ const useStyles = makeStyles((theme) => ({
 const PlayButton = (props) => {
   const classes = useStyles();
 
-const changButton = () => {
-  if (props.isPlaying){
-    return <StopIcon/>
-  }
-  else {
-    return <PlayCircleFilledWhiteIcon />
-  }
-}
-
     return(
-      <>
-        <Button 
+      <div>
+      {props.isPlaying ? (<Button 
+      variant="outlined"
+      color="secondary"
+      className={classes.button}
+      disabled={props.isPlaying}
+      onClick={props.onClick}>Playing...</Button>) : (<Button 
         variant="contained"
-        color="default"
+        color="primary"
         className={classes.button}
-        startIcon={changButton()}
-        onClick={props.onClick}>Play</Button>
-      </>
+        startIcon={<PlayCircleFilledWhiteIcon />}
+        onClick={props.onClick}>Play</Button>)}
+      </div>
     )
   }
-
 export default PlayButton;
