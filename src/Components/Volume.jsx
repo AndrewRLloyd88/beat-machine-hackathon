@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 const PrettoSlider = withStyles({
   root: {
-    color: '#52af77',
+    color: '#00FA7D',
     height: 8,
   },
   thumb: {

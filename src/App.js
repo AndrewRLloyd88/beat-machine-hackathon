@@ -6,18 +6,15 @@ import Bpm from "./helpers/useBPM"
 import BeatTracker from "./Components/BeatTracker"
 import BeatLabel from "./Components/BeatLabel"
 import Tempo from "./Components/Tempo"
-import instruments from "./helpers/instruments"
+import { instruments, getBassNote } from "./helpers/instruments"
 import PlayButton from './Components/PlayButton';
 import StopButton from './Components/StopButton';
 import Volume from './Components/Volume'
 import { Howl, Howler } from 'howler';
-import Inst from "./Components/Inst";
-
 
 const App = () => {
-
   const [isPlaying, setIsPlaying] = useState(false)
-  const [tempo, setTempo] = useState(60);
+  const [tempo, setTempo] = useState(120);
   const [volNum, setVolNum] = useState(50)
   const [squares, setSquares] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   const [playHeadArray, setPlayHeadArray] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
@@ -48,7 +45,8 @@ const App = () => {
     instruments[2].pattern,
     instruments[3].pattern,
     instruments[4].pattern,
-    instruments[5].pattern
+    instruments[5].pattern,
+    instruments[6].pattern
   ]);
 
   const updateGrid = (row, column, toggle) => {
@@ -56,7 +54,7 @@ const App = () => {
     const clonedObj = { ...grid[row] };
     clonedObj[column] = toggle;
     const arrayToPassSetGrid = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 7; i++) {
       if (row === i) {
         arrayToPassSetGrid.push(clonedObj);
       } else {
@@ -144,9 +142,9 @@ const App = () => {
 
   const loop = () => {
     let soundArr = []
-    for (let j = 0; j < 6; j++) {
-      if (grid[j][counter]) {
-        let soundSrc = instruments[j].sound
+    for (let j = 0; j < 7; j++) {
+      if (grid[j][counter]) {  
+        let soundSrc = (instruments[j].name === 'Bassline') ? getBassNote(counter) : instruments[j].sound;
         soundArr.push(soundSrc)
       }
       playSounds(soundArr)
@@ -176,11 +174,11 @@ const App = () => {
 
  const playHead = () => {
     if(isPlaying){
-    return <><td />{playHeadArray}</>
+    return <><td className="instrument" />{playHeadArray}</>
     } else {
       return (
       <>
-      <td className={isPlaying ? 'hidden' : null}/>
+      <td className={isPlaying ? 'hidden' : 'instrument'}/>
       <td className="inactive"></td>
       <td className="inactive"></td>
       <td className="inactive"></td>
@@ -208,7 +206,7 @@ const App = () => {
     <div className="container">
       <div className="titleImg">
       <BeatMachine />
-      <img src="https://www.pngkey.com/png/full/237-2373068_linuxserver-beets-cartoon-beet-png.png" alt="beetJuice logo" width="200" height="200"></img>;
+      <img src="https://www.pngkey.com/png/full/237-2373068_linuxserver-beets-cartoon-beet-png.png" alt="beetJuice logo" width="200" height="200"></img>
       </div>
       <div className="btnGroup">
       <PlayButton onClick={handlePlayButton} isPlaying={isPlaying} />
