@@ -19,15 +19,29 @@ const App = () => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [tempo, setTempo] = useState(60);
   const [volNum, setVolNum] = useState(50)
+  const [squares, setSquares] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  const [playHeadArray, setPlayHeadArray] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 
   const handleVol = (event, volNum) => {
     setVolNum(volNum);
-    console.log("at app: " + volNum)
+    clearAnimation();
   };
 
+  //this function fixes sticking animations in playhead
+  const clearAnimation = () => {
+    let psquares = document.querySelectorAll('.cycle')
+    console.log(psquares)
+    for(const psquare of psquares){
+      if(psquare.classList.contains('playhead')){
+        psquare.classList.remove('playhead')
+        psquare.classList.add('inactive')
+      }
+    }
+  }
 
   // had to set initial value to -1 to allow counting from 0!
-  let [counter, setCounter] = useState(-1);
+  let [counter, setCounter] = useState(0);
+
   const [grid, setGrid] = useState([
     instruments[0].pattern,
     instruments[1].pattern,
@@ -51,14 +65,49 @@ const App = () => {
       }
     }
     setGrid(arrayToPassSetGrid);
-  }
+    clearAnimation();
+}
   
   const handleTempoChange = (event) => {
     const eventValue = event.target.value
     console.log(eventValue)
     setTempo(parseInt(eventValue))
+    clearAnimation();
   }
 
+  const getPreviousSquare = () => {
+    if(counter === 0){
+      return document.getElementById('15')
+    } else {
+      return document.getElementById(`${counter - 1}`)
+    }
+    }
+
+  const playHeadLoop = () => {
+    //make a shallow copy of the pattern
+    let pattern = [...squares]
+   //make a shallow copy of the mutable object
+    let position = squares[counter]
+    //replace the 0 with a 1
+     position = 1;
+   pattern[counter] = position
+   setSquares(pattern)
+   //get the square to animate
+   let squareToAnimate = document.getElementById(`${counter}`)
+   //find previousSquare
+   let previousSquare = getPreviousSquare()
+   //distribute classes as needed
+   previousSquare.classList.remove('playead')
+   previousSquare.classList.add('inactive')
+   squareToAnimate.classList.remove('inactive')
+   squareToAnimate.classList.add('playhead')
+  }
+
+  const resetSquares = () => {
+    setCounter(0)
+    setSquares([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+      setPlayHeadArray(squares.map((square, i) => ( <td key={i + squares} id={i} className={square > 0 ? "playhead" : "inactive cycle"}></td> )))
+  }
 
   const playSound = (source) => {
     var sound = new Howl({
@@ -76,20 +125,23 @@ const App = () => {
     }
   }
 
-  //updates count that loop is dependent on (our 2nd useEffect)
+  //setTimeout does actions at the set tempo e.g. 1000ms
   let beats = Bpm(tempo)
   useEffect(() => {
     if (isPlaying) {
       const interval = setInterval(() => {
+        resetSquares();
+        playHeadLoop()
+        loop();
         // each square, counter increments to one (should be using and if else and setCounter here since it is part of state?)
-        
         counter = counter >= 15 ? 0 : counter + 1
         // loop creates an array of up to 6 sounds that are then played at the same time 
-        loop();
+        resetSquares();
       }, beats);
       return () => clearInterval(interval)
     }
-  }, [isPlaying, grid, beats, volNum])
+    resetSquares();
+  }, [isPlaying, grid, beats, volNum, counter])
 
   const loop = () => {
     let soundArr = []
@@ -123,6 +175,36 @@ const App = () => {
       />)
   });
 
+ const playHead = () => {
+    if(isPlaying){
+    return <><td />{playHeadArray}</>
+    } else {
+      return (
+      <>
+      <td className={isPlaying ? 'hidden' : null}/>
+      <td className="inactive"></td>
+      <td className="inactive"></td>
+      <td className="inactive"></td>
+      <td className="inactive"></td>
+      <td className="inactive"></td>
+      <td className="inactive"></td>
+      <td className="inactive"></td>
+      <td className="inactive"></td>
+      <td className="inactive"></td>
+      <td className="inactive"></td>
+      <td className="inactive"></td>
+      <td className="inactive"></td>
+      <td className="inactive"></td>
+      <td className="inactive"></td>
+      <td className="inactive"></td>
+      <td className="inactive"></td> 
+      </>
+      )
+    }
+  }
+
+  let playHeadComponent = playHead()
+
   return (
     <div className="container">
       <BeatMachine />
@@ -132,7 +214,9 @@ const App = () => {
       <Tempo value={tempo} onTempoChange={(event) => { handleTempoChange(event) }} />
       <table border='0'>
         <tbody>
-          <BeatTracker isPlaying={isPlaying} tempo={tempo}/>
+          <>
+          {playHeadComponent}
+          </>
           {instrumentRows}
           <BeatLabel />
         </tbody>
