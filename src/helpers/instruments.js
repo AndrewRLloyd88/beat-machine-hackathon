@@ -6,7 +6,7 @@ export const instruments = [
   { name: 'Snare 2', sound: "./DrumSamples/AltSnare1/AltSD25.wav", pattern: {0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false, 13: false, 14: false, 15: false }, color: '#00DACD' },
   { name: 'Snare 1', sound: "./DrumSamples/MainSnare/Snare1.wav", pattern: {0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false, 13: false, 14: false, 15: false },color: '#ff7700' },
   { name: 'Kick', sound: "./DrumSamples/Kicks/KickDrum01.wav", pattern: {0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false, 13: false, 14: false, 15: false }, color: '#00990a' },
-  { name: 'Bassline', sound: "./BassSamples/High-E-bass-16th.wav", pattern: {0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false, 13: false, 14: false, 15: false }, color: 'blue' }
+  { name: 'Bassline', sound: "./BassSamples/HighE-BassNote.wav", pattern: {0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false, 13: false, 14: false, 15: false }, color: 'blue' }
 
   
 ]
