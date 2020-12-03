@@ -1,8 +1,10 @@
 /* https://www.pngkey.com/png/full/237-2373068_linuxserver-beets-cartoon-beet-png.png */
 
+@import url("https://fonts.googleapis.com/css2?family=Cabin&display=swap");
+
 .App {
   display: flex;
-  font-family: sans-serif;
+  font-family: "Cabin", sans-serif;
   text-align: center;
   margin: 6rem 0;
   padding: auto;
@@ -12,14 +14,17 @@
   padding: 20px;
   margin: auto;
   width: 60%;
-  background-color: #BD1A74;
+  background-color: #bd1a74;
+  box-shadow: 10px 10px #222222ad;
+  background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
 }
 
 body {
-  background-color: #2D5810;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #604222;
+  font-family: "Cabin", sans-serif;
   font-size: 20px;
   color: white;
+  background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
 }
 
 input {
@@ -35,64 +40,67 @@ input {
 }
 
 td.instrument {
-  text-align: right;
-  font-family: fantasy;
- padding-right: 10px;
+  text-align: center;
+  font-family: "Cabin", sans-serif;
+  padding-right: 10px;
+  background-color: #bd1a7486;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 .volTempo {
-  display: flex; 
+  display: flex;
   flex-direction: row;
 }
 .volStyle {
-margin-right: 80px;
+  margin-right: 80px;
 }
 
-.tempoBorder{
+.tempoBorder {
   border-style: solid;
   border-radius: 15px;
   border-width: 5px;
-  opacity: 0.3;
+  opacity: 0.9;
   width: 70px;
+  color: #151615;
+  border-color: #bd1a7486;
 }
-.temStyle{
-  color: #a8dadc;
-  font-family: monospace;
+.temStyle {
+  color: #ffffff;
+  font-family: "Cabin", sans-serif;
   text-shadow: 2px 2px 5px gray;
 }
-.poStyle{
+.poStyle {
   color: pink;
-  font-family: monospace;
+  font-family: "Cabin", sans-serif;
   text-shadow: 2px 2px 5px gray;
-
 }
-.btnGroup{
-  display: flex; 
+.btnGroup {
+  display: flex;
   flex-direction: row;
 }
-.tCell{
+.tCell {
   border-radius: 3px;
 }
 
-.volIcon{
-  color: #3a405a;
+.volIcon {
+  color: #ffffff;
 }
 
-.titleImg{
-  display: flex; 
+.titleImg {
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-
 @media only screen and (max-width: 1580px) {
-    .container {
-      padding: 20px;
-      margin: auto;
-      width: 70%;
-      background-color: #BD1A74;
-}
+  .container {
+    padding: 20px;
+    margin: auto;
+    width: 70%;
+    background-color: #bd1a74;
+  }
 }
 
 @media only screen and (max-width: 1300px) {
@@ -100,14 +108,14 @@ margin-right: 80px;
     padding: 20px;
     margin: auto;
     width: 88%;
-    background-color: #BD1A74;
-}
+    background-color: #bd1a74;
+  }
 }
 @media only screen and (max-width: 1100px) {
   .container {
     padding: 20px;
     margin: auto;
     width: 95%;
-    background-color: #BD1A74;
-}
+    background-color: #bd1a74;
+  }
 }

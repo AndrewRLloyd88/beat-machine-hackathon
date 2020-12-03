@@ -11,11 +11,8 @@ import PlayButton from './Components/PlayButton';
 import StopButton from './Components/StopButton';
 import Volume from './Components/Volume'
 import { Howl, Howler } from 'howler';
-import Inst from "./Components/Inst";
-
 
 const App = () => {
-
   const [isPlaying, setIsPlaying] = useState(false)
   const [tempo, setTempo] = useState(60);
   const [volNum, setVolNum] = useState(50)
@@ -176,11 +173,11 @@ const App = () => {
 
  const playHead = () => {
     if(isPlaying){
-    return <><td />{playHeadArray}</>
+    return <><td className="instrument" />{playHeadArray}</>
     } else {
       return (
       <>
-      <td className={isPlaying ? 'hidden' : null}/>
+      <td className={isPlaying ? 'hidden' : 'instrument'}/>
       <td className="inactive"></td>
       <td className="inactive"></td>
       <td className="inactive"></td>
@@ -208,7 +205,7 @@ const App = () => {
     <div className="container">
       <div className="titleImg">
       <BeatMachine />
-      <img src="https://www.pngkey.com/png/full/237-2373068_linuxserver-beets-cartoon-beet-png.png" alt="beetJuice logo" width="200" height="200"></img>;
+      <img src="https://www.pngkey.com/png/full/237-2373068_linuxserver-beets-cartoon-beet-png.png" alt="beetJuice logo" width="200" height="200"></img>
       </div>
       <div className="btnGroup">
       <PlayButton onClick={handlePlayButton} isPlaying={isPlaying} />
