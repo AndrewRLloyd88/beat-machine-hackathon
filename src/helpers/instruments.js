@@ -12,28 +12,30 @@ export const instruments = [
  // returns different sound pointer depending on the position of the counter on the grid
  export function getBassNote(position) {
   if(position >= 14) {
-    return "./BassSamples/B-Bass-16th.wav";  
+    return "./BassSamples/E-Bass-16th.wav";  
   }
   if(position >= 12){
-    return "./BassSamples/A-Bass-16th.wav";
+    return "./BassSamples/E-Bass-16th.wav";
   }
   if(position >= 10){
-    return "./BassSamples/B-Bass-16th.wav";
+    return "./BassSamples/E-Bass-16th.wav";
   }
   if(position >= 8){
-    return "./BassSamples/D-Bass-16th.wav";
+    return "./BassSamples/EBassNote.wav"; // louder  
+
   }
   if(position >= 6) {
-    return "./BassSamples/High-E-Bass-16th.wav";  
+    return "./BassSamples/EBassNote.wav";   
   }
   if(position >= 4){
-    return "./BassSamples/D-Bass-16th.wav";
+    return "./BassSamples/EBassNote.wav";   
+
   }
   if(position >= 2){
-    return "./BassSamples/B-Bass-16th.wav";   
+    return "./BassSamples/EBassNote.wav";   
   }
   if(position >= 0){
-    return "./BassSamples/High-E-Bass-16th.wav";  
+    return "./BassSamples/EBassNote.wav";  
   }
   return "./BassSamples/E-Synth-Note.wav";
 }
