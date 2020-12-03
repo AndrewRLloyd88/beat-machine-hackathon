@@ -24,9 +24,10 @@ const App = () => {
 
   const handleVol = (event, volNum) => {
     setVolNum(volNum);
-    console.log("at app: " + volNum)
+    clearAnimation();
   };
 
+  //this function fixes sticking animations in playhead
   const clearAnimation = () => {
     let psquares = document.querySelectorAll('.cycle')
     console.log(psquares)
@@ -37,15 +38,6 @@ const App = () => {
       }
     }
   }
-
-  const generateRandomKey = () => {
-    let result = '';
-    const characters = '0123456789';
-    for (let i = 0; i < 8; i++) {
-      result += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-    return parseInt(result);
-  };
 
   // had to set initial value to -1 to allow counting from 0!
   let [counter, setCounter] = useState(0);
@@ -79,6 +71,7 @@ const App = () => {
     const eventValue = event.target.value
     console.log(eventValue)
     setTempo(parseInt(eventValue))
+    clearAnimation();
   }
 
   const getPreviousSquare = () => {
@@ -112,7 +105,7 @@ const App = () => {
   const resetSquares = () => {
     setCounter(0)
     setSquares([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-      setPlayHeadArray(squares.map((square, i) => ( <td key={generateRandomKey()} id={i} className={square > 0 ? "playhead" : "inactive cycle"}></td> )))
+      setPlayHeadArray(squares.map((square, i) => ( <td key={i + squares} id={i} className={square > 0 ? "playhead" : "inactive cycle"}></td> )))
   }
 
   const playSound = (source) => {
@@ -171,7 +164,7 @@ const App = () => {
   const instrumentRows = instruments.map((instrument, row) => {
     return (
       <InstrumentRow
-        key={generateRandomKey()}
+        key={row}
         row={row}
         updateGrid={(row, column, toggle) => updateGrid(row, column, toggle)}
         instrumentName={instrument.name}
