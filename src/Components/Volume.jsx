@@ -51,8 +51,8 @@ const PrettoSlider = withStyles({
 
 const Volume = (props) => {
   const classes = useStyles();
-  console.log("at vloume ")
-  console.log(props.volNum)
+  // console.log("at vloume ")
+  // console.log(props.volNum)
 
  
   return (
