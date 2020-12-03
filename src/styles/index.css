@@ -1,6 +1,7 @@
 /* https://www.pngkey.com/png/full/237-2373068_linuxserver-beets-cartoon-beet-png.png */
 
 @import url("https://fonts.googleapis.com/css2?family=Cabin&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,700&display=swap");
 
 .App {
   display: flex;
@@ -14,7 +15,6 @@
   padding: 20px;
   margin: auto;
   width: 60%;
-<<<<<<< HEAD
   background-color: #bd1a74;
   box-shadow: 10px 10px #222222ad;
   background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
@@ -23,14 +23,6 @@
 body {
   background-color: #604222;
   font-family: "Cabin", sans-serif;
-=======
-  background-color: #946a9e;
-}
-
-body {
-  background-color: #8f1889;
-  font-family: impact;
->>>>>>> 93398eb7fb45e29a9a1a8ef21821b65cdcea8a95
   font-size: 20px;
   color: white;
   background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
@@ -51,6 +43,7 @@ input {
 td.instrument {
   text-align: center;
   font-family: "Cabin", sans-serif;
+  font-weight: bold;
   padding-right: 10px;
   background-color: #bd1a7486;
   border: 1px solid black;
@@ -107,14 +100,10 @@ td.instrument {
   .container {
     padding: 20px;
     margin: auto;
-<<<<<<< HEAD
     width: 70%;
     background-color: #bd1a74;
+    border-radius: 5px;
   }
-=======
-    width: 85%;
-    background-color: #370332;
->>>>>>> 93398eb7fb45e29a9a1a8ef21821b65cdcea8a95
 }
 
 @media only screen and (max-width: 1300px) {

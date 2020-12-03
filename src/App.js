@@ -14,7 +14,7 @@ import { Howl, Howler } from 'howler';
 
 const App = () => {
   const [isPlaying, setIsPlaying] = useState(false)
-  const [tempo, setTempo] = useState(60);
+  const [tempo, setTempo] = useState(120);
   const [volNum, setVolNum] = useState(50)
   const [squares, setSquares] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   const [playHeadArray, setPlayHeadArray] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
@@ -144,7 +144,7 @@ const App = () => {
     let soundArr = []
     for (let j = 0; j < 7; j++) {
       if (grid[j][counter]) {  
-        let soundSrc = (instruments[j].name === 'bass') ? getBassNote(counter) : instruments[j].sound;
+        let soundSrc = (instruments[j].name === 'Bassline') ? getBassNote(counter) : instruments[j].sound;
         soundArr.push(soundSrc)
       }
       playSounds(soundArr)
