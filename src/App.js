@@ -127,18 +127,23 @@ const App = () => {
   useEffect(() => {
     if (isPlaying) {
       const interval = setInterval(() => {
-        resetSquares();
+        // resetSquares();
         playHeadLoop()
         loop();
         // each square, counter increments to one (should be using and if else and setCounter here since it is part of state?)
-        counter = counter >= 15 ? 0 : counter + 1
+         if (counter < 15) {
+          setCounter(prevState => ++prevState); 
+          } else {
+          setCounter(0); 
+          }
+          console.log(counter)
         // loop creates an array of up to 6 sounds that are then played at the same time 
-        resetSquares();
+        // resetSquares();
       }, beats);
       return () => clearInterval(interval)
     }
     resetSquares();
-  }, [isPlaying, grid, beats, volNum, counter])
+  }, [isPlaying, beats, volNum, counter])
 
   const loop = () => {
     let soundArr = []
@@ -151,13 +156,10 @@ const App = () => {
     }
   }
 
-  const handlePlayButton = () => {
-    setIsPlaying(true)
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying)
   }
 
-  const handleStopBtn = () => {
-    setIsPlaying(false)
-  }
 
   const instrumentRows = instruments.map((instrument, row) => {
     return (
@@ -209,8 +211,8 @@ const App = () => {
       <img src="https://www.pngkey.com/png/full/237-2373068_linuxserver-beets-cartoon-beet-png.png" alt="beetJuice logo" width="200" height="200"></img>
       </div>
       <div className="btnGroup">
-      <PlayButton onClick={handlePlayButton} isPlaying={isPlaying} />
-      <StopButton onClick={handleStopBtn} isPlaying={isPlaying}/>
+      <PlayButton onClick={togglePlay} isPlaying={isPlaying} />
+      <StopButton onClick={togglePlay} isPlaying={isPlaying}/>
       </div>
       <br/>
       <div className="volTempo">
