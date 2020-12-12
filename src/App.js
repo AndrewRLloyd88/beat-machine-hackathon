@@ -13,17 +13,38 @@ import Volume from './Components/Volume'
 import { Howl, Howler } from 'howler';
 
 const App = () => {
+  //states
   const [isPlaying, setIsPlaying] = useState(false)
   const [tempo, setTempo] = useState(120);
   const [volNum, setVolNum] = useState(50)
   const [squares, setSquares] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   const [playHeadArray, setPlayHeadArray] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+  const [counter, setCounter] = useState(0);
+  const [grid, setGrid] = useState([
+    instruments[0].pattern,
+    instruments[1].pattern,
+    instruments[2].pattern,
+    instruments[3].pattern,
+    instruments[4].pattern,
+    instruments[5].pattern,
+    instruments[6].pattern
+  ]);
 
+  //set BPM
+  let beats = Bpm(tempo)
+
+  //volume and player specific functions TODO: Refactor into helpers
   const handleVol = (event, volNum) => {
     setVolNum(volNum);
     clearAnimation();
   };
 
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying)
+  }
+
+
+  //Animation Specific
   //this function fixes sticking animations in playhead
   const clearAnimation = () => {
     let psquares = document.querySelectorAll('.cycle')
@@ -36,21 +57,9 @@ const App = () => {
     }
   }
 
-  // had to set initial value to -1 to allow counting from 0!
-  let [counter, setCounter] = useState(0);
 
-  const [grid, setGrid] = useState([
-    instruments[0].pattern,
-    instruments[1].pattern,
-    instruments[2].pattern,
-    instruments[3].pattern,
-    instruments[4].pattern,
-    instruments[5].pattern,
-    instruments[6].pattern
-  ]);
 
   const updateGrid = (row, column, toggle) => {
-    // console.log('row, col, toggle', row, column, toggle);
     const clonedObj = { ...grid[row] };
     clonedObj[column] = toggle;
     const arrayToPassSetGrid = [];
@@ -123,7 +132,6 @@ const App = () => {
   }
 
   //setTimeout does actions at the set tempo e.g. 1000ms
-  let beats = Bpm(tempo)
   useEffect(() => {
     if (isPlaying) {
       const interval = setInterval(() => {
@@ -154,10 +162,6 @@ const App = () => {
       }
       playSounds(soundArr)
     }
-  }
-
-  const togglePlay = () => {
-    setIsPlaying(!isPlaying)
   }
 
 
