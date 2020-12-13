@@ -98,27 +98,18 @@ td.instrument {
 
 @media only screen and (max-width: 1580px) {
   .container {
-    padding: 20px;
-    margin: auto;
     width: 70%;
-    background-color: #bd1a74;
     border-radius: 5px;
   }
 }
 
 @media only screen and (max-width: 1300px) {
   .container {
-    padding: 20px;
-    margin: auto;
     width: 88%;
-    background-color: #bd1a74;
   }
 }
 @media only screen and (max-width: 1100px) {
   .container {
-    padding: 20px;
-    margin: auto;
     width: 95%;
-    background-color: #bd1a74;
   }
 }

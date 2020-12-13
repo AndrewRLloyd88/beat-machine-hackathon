@@ -4,7 +4,6 @@ import './styles/playhead.css';
 import BeatMachine from './Components/BeatMachine';
 import InstrumentRow from './Components/InstrumentRow';
 import Bpm from './helpers/useBPM';
-// import BeatTracker from './Components/BeatTracker';
 import BeatLabel from './Components/BeatLabel';
 import Tempo from './Components/Tempo';
 import { instruments, getBassNote } from './helpers/instruments';
@@ -117,17 +116,7 @@ const App = () => {
     squareToAnimate.classList.remove('inactive');
     squareToAnimate.classList.add('playhead');
   };
-  //this function fixes sticking animations in playhead
-  const clearAnimation = () => {
-    let psquares = document.querySelectorAll('.cycle');
-    console.log(psquares);
-    for (const psquare of psquares) {
-      if (psquare.classList.contains('playhead')) {
-        psquare.classList.remove('playhead');
-        psquare.classList.add('inactive');
-      }
-    }
-  };
+
 
   //when player is stopped reset playhead and array to initial values
   const resetSquares = () => {
@@ -186,7 +175,6 @@ const App = () => {
         } else {
           setCounter(0);
         }
-        console.log(counter);
         // loop creates an array of up to 6 sounds that are then played at the same time
       }, beats);
       return () => clearInterval(interval);
