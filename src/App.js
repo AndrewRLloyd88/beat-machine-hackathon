@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './styles/index.css';
+import './styles/playhead.css';
 import BeatMachine from './Components/BeatMachine';
 import InstrumentRow from './Components/InstrumentRow';
 import Bpm from './helpers/useBPM';
-import BeatTracker from './Components/BeatTracker';
+// import BeatTracker from './Components/BeatTracker';
 import BeatLabel from './Components/BeatLabel';
 import Tempo from './Components/Tempo';
 import { instruments, getBassNote } from './helpers/instruments';
@@ -158,8 +159,6 @@ const App = () => {
     setGrid(arrayToPassSetGrid);
   };
 
-
-
   const playSound = (source) => {
     var sound = new Howl({
       src: [source],
@@ -290,7 +289,7 @@ const App = () => {
       <br />
       <table border="0">
         <tbody>
-          <>{playHeadComponent}</>
+          {playHeadComponent}
           {instrumentRows}
           <BeatLabel />
         </tbody>

@@ -1,11 +1,11 @@
 /* https://www.pngkey.com/png/full/237-2373068_linuxserver-beets-cartoon-beet-png.png */
 
-@import url("https://fonts.googleapis.com/css2?family=Cabin&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,700&display=swap');
 
 .App {
   display: flex;
-  font-family: "Cabin", sans-serif;
+  font-family: 'Cabin', sans-serif;
   text-align: center;
   margin: 6rem 0;
   padding: auto;
@@ -17,15 +17,15 @@
   width: 60%;
   background-color: #bd1a74;
   box-shadow: 10px 10px #222222ad;
-  background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
+  background-image: url('https://www.transparenttextures.com/patterns/cartographer.png');
 }
 
 body {
   background-color: #604222;
-  font-family: "Cabin", sans-serif;
+  font-family: 'Cabin', sans-serif;
   font-size: 20px;
   color: white;
-  background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+  background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
 }
 
 input {
@@ -42,7 +42,7 @@ input {
 
 td.instrument {
   text-align: center;
-  font-family: "Cabin", sans-serif;
+  font-family: 'Cabin', sans-serif;
   font-weight: bold;
   padding-right: 10px;
   background-color: #bd1a7486;
@@ -69,12 +69,12 @@ td.instrument {
 }
 .temStyle {
   color: #ffffff;
-  font-family: "Cabin", sans-serif;
+  font-family: 'Cabin', sans-serif;
   text-shadow: 2px 2px 5px gray;
 }
 .poStyle {
   color: pink;
-  font-family: "Cabin", sans-serif;
+  font-family: 'Cabin', sans-serif;
   text-shadow: 2px 2px 5px gray;
 }
 .btnGroup {
