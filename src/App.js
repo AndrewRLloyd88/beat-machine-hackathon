@@ -10,10 +10,10 @@ import { instruments, getBassNote } from "./helpers/instruments"
 import PlayButton from './Components/PlayButton';
 import StopButton from './Components/StopButton';
 import Volume from './Components/Volume'
-import { Howl, Howler } from 'howler';
+import { Howl } from 'howler';
 
 const App = () => {
-  //states
+  //settings the initial states
   const [isPlaying, setIsPlaying] = useState(false)
   const [tempo, setTempo] = useState(120);
   const [volNum, setVolNum] = useState(50)
@@ -44,7 +44,7 @@ const App = () => {
   }
 
 
-  //Animation Specific
+  //Animation Specific functions
   //this function fixes sticking animations in playhead
   const clearAnimation = () => {
     let psquares = document.querySelectorAll('.cycle')
@@ -57,8 +57,7 @@ const App = () => {
     }
   }
 
-
-
+  //handles the array of instruments on each tick
   const updateGrid = (row, column, toggle) => {
     const clonedObj = { ...grid[row] };
     clonedObj[column] = toggle;
@@ -71,14 +70,12 @@ const App = () => {
       }
     }
     setGrid(arrayToPassSetGrid);
-    clearAnimation();
 }
   
+//set the tempo dependent on the input field
   const handleTempoChange = (event) => {
     const eventValue = event.target.value
-    console.log(eventValue)
     setTempo(parseInt(eventValue))
-    clearAnimation();
   }
 
   const getPreviousSquare = () => {
@@ -131,7 +128,7 @@ const App = () => {
     }
   }
 
-  //setTimeout does actions at the set tempo e.g. 1000ms
+  //setTimeout performs actions at the set tempo e.g. 1000ms
   useEffect(() => {
     if (isPlaying) {
       const interval = setInterval(() => {
