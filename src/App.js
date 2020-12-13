@@ -13,11 +13,13 @@ import Volume from './Components/Volume'
 import { Howl } from 'howler';
 
 const App = () => {
-  //settings the initial states
+  //beat machine initial states
   const [isPlaying, setIsPlaying] = useState(false)
   const [tempo, setTempo] = useState(120);
   const [volNum, setVolNum] = useState(50)
+  // state tracking for playhead when isPlaying
   const [squares, setSquares] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  // state tracking for our dumb component when !isPlaying
   const [playHeadArray, setPlayHeadArray] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
   const [counter, setCounter] = useState(0);
   const [grid, setGrid] = useState([
@@ -30,21 +32,51 @@ const App = () => {
     instruments[6].pattern
   ]);
 
-  //set BPM
-  let beats = Bpm(tempo)
-
-  //volume and player specific functions TODO: Refactor into helpers
-  const handleVol = (event, volNum) => {
-    setVolNum(volNum);
-    clearAnimation();
-  };
-
+  // TODO: Refactor player controls into helpers
   const togglePlay = () => {
     setIsPlaying(!isPlaying)
   }
 
+  //set BPM
+  let beats = Bpm(tempo)
+
+  //volume handler
+  const handleVol = (event, volNum) => {
+    setVolNum(volNum);
+  };
+
+
 
   //Animation Specific functions
+  //helper function for playHeadLoop()
+  const getPreviousSquare = () => {
+    if(counter === 0){
+      return document.getElementById('15')
+    } else {
+      return document.getElementById(`${counter - 1}`)
+    }
+    }
+
+  // animates playhead based off the counter position
+  const playHeadLoop = () => {
+    //make a shallow copy of the pattern
+    let pattern = [...squares]
+   //make a shallow copy of the mutable object
+    let position = squares[counter]
+    //set the current square to a truthy value
+     position = 1;
+   pattern[counter] = position
+   setSquares(pattern)
+   //get the square to animate
+   let squareToAnimate = document.getElementById(`${counter}`)
+   //find previousSquare
+   let previousSquare = getPreviousSquare()
+   //distribute classes as needed
+   previousSquare.classList.remove('playead')
+   previousSquare.classList.add('inactive')
+   squareToAnimate.classList.remove('inactive')
+   squareToAnimate.classList.add('playhead')
+  }
   //this function fixes sticking animations in playhead
   const clearAnimation = () => {
     let psquares = document.querySelectorAll('.cycle')
@@ -78,33 +110,7 @@ const App = () => {
     setTempo(parseInt(eventValue))
   }
 
-  const getPreviousSquare = () => {
-    if(counter === 0){
-      return document.getElementById('15')
-    } else {
-      return document.getElementById(`${counter - 1}`)
-    }
-    }
 
-  const playHeadLoop = () => {
-    //make a shallow copy of the pattern
-    let pattern = [...squares]
-   //make a shallow copy of the mutable object
-    let position = squares[counter]
-    //replace the 0 with a 1
-     position = 1;
-   pattern[counter] = position
-   setSquares(pattern)
-   //get the square to animate
-   let squareToAnimate = document.getElementById(`${counter}`)
-   //find previousSquare
-   let previousSquare = getPreviousSquare()
-   //distribute classes as needed
-   previousSquare.classList.remove('playead')
-   previousSquare.classList.add('inactive')
-   squareToAnimate.classList.remove('inactive')
-   squareToAnimate.classList.add('playhead')
-  }
 
   const resetSquares = () => {
     setCounter(0)
