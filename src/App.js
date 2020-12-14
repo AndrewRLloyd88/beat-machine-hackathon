@@ -56,7 +56,7 @@ const App = () => {
     0,
   ]);
   const [counter, setCounter] = useState(0);
-  // holds state for each row of instruments
+  // holds on off state for each row of instruments
   const [grid, setGrid] = useState([
     instruments[0].pattern,
     instruments[1].pattern,
@@ -98,30 +98,20 @@ const App = () => {
 
   // animates playhead based off the counter position
   const playHeadLoop = () => {
-    //make a shallow copy of the pattern
-    let pattern = [...squares];
-    //make a shallow copy of the mutable object
-    let position = squares[counter];
-    //set the current square to a truthy value
-    position = 1;
-    pattern[counter] = position;
-    setSquares(pattern);
     //get the square to animate
     let squareToAnimate = document.getElementById(`${counter}`);
     //find previousSquare
     let previousSquare = getPreviousSquare();
-    //distribute classes as needed
-    previousSquare.classList.remove('playead');
+    //TODO Re-factor into one toggle
+    previousSquare.classList.remove('playhead');
     previousSquare.classList.add('inactive');
     squareToAnimate.classList.remove('inactive');
     squareToAnimate.classList.add('playhead');
   };
 
-
   //when player is stopped reset playhead and array to initial values
   const resetSquares = () => {
     setCounter(0);
-    setSquares([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
     setPlayHeadArray(
       squares.map((square, i) => (
         <td
@@ -133,10 +123,11 @@ const App = () => {
     );
   };
 
-  //handles the array of instruments on each tick
+  //handles any changes user makes to instrument grid and updates values accordingly
   const updateGrid = (row, column, toggle) => {
     const clonedObj = { ...grid[row] };
     clonedObj[column] = toggle;
+    //temporary const for setGrid
     const arrayToPassSetGrid = [];
     for (let i = 0; i < 7; i++) {
       if (row === i) {
@@ -148,6 +139,7 @@ const App = () => {
     setGrid(arrayToPassSetGrid);
   };
 
+  //play an individual sound from our array from PlaySounds()
   const playSound = (source) => {
     var sound = new Howl({
       src: [source],
@@ -157,45 +149,57 @@ const App = () => {
     sound.play();
   };
 
+  //Iterate through the array of collected sounds compiled from our grid in loop()
   const playSounds = (array) => {
     for (let i = 0; i < array.length; i++) {
       playSound(array[i]);
     }
   };
 
-  //useEffect re-renders and runs our beat machine functions if IsPlaying per tick of setInterval
-  useEffect(() => {
-    if (isPlaying) {
-      const interval = setInterval(() => {
-        playHeadLoop();
-        loop();
-        // each square, counter increments to one (should be using and if else and setCounter here since it is part of state?)
-        if (counter < 15) {
-          setCounter((prevState) => ++prevState);
-        } else {
-          setCounter(0);
-        }
-        // loop creates an array of up to 6 sounds that are then played at the same time
-      }, beats);
-      return () => clearInterval(interval);
-    }
-    resetSquares();
-  }, [isPlaying, beats, volNum, counter]);
-
+  //collate all active sound samples on the current beat into an array from instruments
   const loop = () => {
+    //create an array to hold our sounds for a beat
     let soundArr = [];
+    //loop through each instrument in our column
     for (let j = 0; j < 7; j++) {
+      //if the square is active e.g. 0,0
       if (grid[j][counter]) {
+        //set a temporary variable to hold our soundSrc
         let soundSrc =
           instruments[j].name === 'Bassline'
+          //e.g. "./BassSamples/D-BassNote.wav"
             ? getBassNote(counter)
             : instruments[j].sound;
+            //e.g. "./DrumSamples/ClosedHats/HiHat01.wav"
         soundArr.push(soundSrc);
       }
       playSounds(soundArr);
     }
   };
 
+  //useEffect re-renders and runs our beat machine functions if IsPlaying per tick of setInterval
+  useEffect(() => {
+    //is the beat machine playing?
+    if (isPlaying) {
+      //set an interval to perform player logic
+      const interval = setInterval(() => {
+        //animate the playHead based on counter position
+        playHeadLoop();
+        // create an array of up to 6 sounds that are then played at the same time
+        loop();
+        // increments counter based on current tempo
+        if (counter < 15) {
+          setCounter((prevState) => ++prevState);
+        } else {
+          setCounter(0);
+        }
+      }, beats);
+      return () => clearInterval(interval);
+    }
+    resetSquares();
+  }, [isPlaying, beats, volNum, counter]);
+
+  //Map each instrumentRow onto the beat machine
   const instrumentRows = instruments.map((instrument, row) => {
     return (
       <InstrumentRow
@@ -210,6 +214,7 @@ const App = () => {
     );
   });
 
+  //Conditionally Render Playhead if isPlaying
   const playHead = () => {
     if (isPlaying) {
       return (
@@ -242,9 +247,10 @@ const App = () => {
       );
     }
   };
+  //store playHeadComponent in a variable for readability
+  const playHeadComponent = playHead();
 
-  let playHeadComponent = playHead();
-
+  //App returns the composite of our beat machine and components
   return (
     <div className="container">
       <div className="titleImg">

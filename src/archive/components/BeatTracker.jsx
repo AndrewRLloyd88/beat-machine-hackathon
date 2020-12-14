@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/index.css';
-import BPM from "../helpers/useBPM"
+import BPM from "../../helpers/useBPM"
 import '../styles/playhead.css';
 
 const BeatTracker = (props) => {

@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../styles/index.css';
-import {Howl, Howler} from 'howler';
 import StopIcon from '@material-ui/icons/Stop';
 import { Button, makeStyles } from '@material-ui/core';
-import { orange } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   button: {
